@@ -1,0 +1,273 @@
+:root {
+    margin: 0 auto;
+    font-size: 16px;
+    font-family: 'Gafata', sans-serif;
+    --bg-primary: rgb(25, 25, 25);
+    --bg-secondary: rgb(250, 250, 250);
+    --text-primary: rgb(250, 250, 250);
+    --text-secondary: rgb(200, 200, 200);
+    --text-accent-primary: rgb(226, 0, 72);
+    --text-accent-secondary: rgb(160, 0, 50);
+    background-color: var(--bg-primary);
+    background-size: cover;
+}
+
+body {
+    margin: 0;
+}
+
+/* 
+=========================================
+                NAVBAR
+=========================================
+*/
+
+.navbar {
+    width: 100vw;
+    height: 2.5rem;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+}
+
+.navbar > ul {
+    padding: 0 6rem;
+    margin: 0;
+    list-style: none;
+    margin-top: 0.8rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar > ul > li {
+    height: 2rem;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.navbar > ul > li > a {
+    color: var(--text-secondary);
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+    transition: color 0.5s ease;
+}
+
+.navbar > ul > li > a.selected {
+    color: var(--text-primary);
+}
+
+.navbar > ul > li > a.selected + .circle {
+    transition: box-shadow 0.5s ease;
+    transition-delay: 0.8s;
+    box-shadow: 0 0 2px 1px white;
+}
+
+.navbar > ul > li > a:hover {
+    cursor: pointer;
+    transition: color 0.5s ease;
+    color: var(--text-accent-primary);
+}
+
+.navbar > ul > li > a:hover + .circle {
+    transition: box-shadow 0.5s ease;
+    box-shadow: 0 0 3px 1px white;
+}
+
+.nav-1 > a, .nav-4 > a {
+    animation-name: fade-in-outer-text;
+    animation-duration: 1.5s;
+}
+
+.nav-1 > a.selected, .nav-4 > a.selected {
+    animation-name: fade-in-selected-outer-text;
+    animation-duration: 1s;
+}
+
+.nav-2 > a, .nav-3 > a {
+    animation-name: fade-in-inner-text;
+    animation-duration: 1s;
+}
+
+.nav-2 > a.selected, .nav-3 > a.selected {
+    animation-name: fade-in-selected-inner-text;
+    animation-duration: 1s;
+}
+
+.circle {
+    position: absolute;
+    transform: translate(-50%, -20%);
+    left: 50%;
+    top: 100%;
+    height: 0.3rem;
+    width: 0.3rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 white;
+    transition: box-shadow 0.5s ease;
+    background-color: var(--bg-secondary);
+}
+
+.nav-1 > .circle, .nav-4 > .circle {
+    animation-name: fade-in-outer-circle;
+    animation-duration: 1.5s;
+}
+
+.nav-2 > .circle, .nav-3 > .circle {
+    animation-name: fade-in-inner-circle;
+    animation-duration: 1s;
+}
+
+.h-divider {
+    height: 1px;
+    width: 100%;
+    background-color: var(--bg-secondary);
+}
+
+.nav-line {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(250,250,250,0) 2%, rgba(250,250,250,1) 15%, rgba(250,250,250,1) 85%, rgba(250,250,250,0) 98%);
+    animation-name: draw-line;
+    animation-duration: 1s;
+}
+
+@keyframes draw-line {
+    0% {
+        width: 0;
+        background-color: rgba(250, 250, 250, 0);
+        left: 50%;
+    }
+    100% {
+        width: 100%;
+        background: linear-gradient(90deg, rgba(250,250,250,0) 2%, rgba(250,250,250,1) 15%, rgba(250,250,250,1) 85%, rgba(250,250,250,0) 98%);
+        left: 0%;
+    }
+}
+
+@keyframes fade-in-inner-circle {
+    0% {
+        background-color: var(--bg-primary);
+    }
+    8% {
+        background-color: var(--bg-primary);
+    }
+    100% {
+        background-color: var(--bg-secondary);
+    }
+}
+
+@keyframes fade-in-outer-circle {
+    0% {
+        background-color: var(--bg-primary);
+    }
+    30% {
+        background-color: var(--bg-primary);
+    }
+    100% {
+        background-color: var(--bg-secondary);
+    }
+}
+
+@keyframes fade-in-inner-text {
+    0% {
+        color: var(--bg-primary)
+    }
+    8% {
+        color: var(--bg-primary)
+    }
+    100% {
+        color: var(--text-secondary)
+    }
+}
+
+@keyframes fade-in-selected-inner-text {
+    0% {
+        color: var(--bg-primary)
+    }
+    8% {
+        color: var(--bg-primary)
+    }
+    65% {
+        color: var(--text-secondary)
+    }
+    100% {
+        color: var(--text-primary)
+    }
+}
+
+@keyframes fade-in-outer-text {
+    0% {
+        color: var(--bg-primary)
+    }
+    30% {
+        color: var(--bg-primary)
+    }
+    100% {
+        color: var(--text-secondary)
+    }
+}
+
+@keyframes fade-in-selected-outer-text {
+    0% {
+        color: var(--bg-primary)
+    }
+    30% {
+        color: var(--bg-primary)
+    }
+    65% {
+        color: var(--text-secondary)
+    }
+    100% {
+        color: var(--text-primary)
+    }
+}
+
+/* 
+=========================================
+                MAIN
+=========================================
+*/
+
+#main {
+    margin-top: 2.5rem;
+    padding: 0 8rem;
+}
+
+.content > h1.main-heading {
+    color: var(--text-secondary)
+}
+
+.highlight {
+    color: var(--text-accent-secondary);
+}
+
+/* 
+=========================================
+                WELCOME
+=========================================
+*/
+
+#welcome-bg-img {
+    position: fixed;
+    display: block;
+    right: 0;
+    top: 0;
+    width: 55%;
+    height: 100%;
+    z-index: -2;
+    background-image: 
+        linear-gradient(90deg, rgba(25,25,25,1) 0%, rgba(25,25,25,0.9) 40%, rgba(25,25,25,0.3) 100%),
+        url('assets/portfolio-img-1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#welcome {
+    padding-top: 10rem;
+}
