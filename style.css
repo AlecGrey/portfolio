@@ -7,8 +7,9 @@
     --bg-secondary: rgb(250, 250, 250);
     --text-primary: rgb(250, 250, 250);
     --text-secondary: rgb(200, 200, 200);
-    --text-accent-primary: rgb(226, 0, 72);
+    --text-accent-primary: rgb(199, 0, 63);
     --text-accent-secondary: rgb(160, 0, 50);
+    --text-accent-ternary: rgb(255, 0, 81);
     background-color: var(--bg-primary);
     background-size: cover;
 }
@@ -72,33 +73,24 @@ body {
 
 .navbar > ul > li > a:hover {
     cursor: pointer;
-    transition: color 0.5s ease;
     color: var(--text-accent-primary);
+    transition: color 0.3s ease;
+}
+
+.navbar > ul > li > a:active {
+    color: var(--text-accent-ternary);
+    transition: color, 0.2s;
 }
 
 .navbar > ul > li > a:hover + .circle {
-    transition: box-shadow 0.5s ease;
     box-shadow: 0 0 3px 1px white;
+    transition: box-shadow 0.5s ease;
 }
 
-.nav-1 > a, .nav-4 > a {
-    animation-name: fade-in-outer-text;
-    animation-duration: 1.5s;
-}
+.navbar > ul > li > a:active + .circle {
+    box-shadow: 0 0 4px 3px white;
+    transition: box-shadow 0.3s;
 
-.nav-1 > a.selected, .nav-4 > a.selected {
-    animation-name: fade-in-selected-outer-text;
-    animation-duration: 1s;
-}
-
-.nav-2 > a, .nav-3 > a {
-    animation-name: fade-in-inner-text;
-    animation-duration: 1s;
-}
-
-.nav-2 > a.selected, .nav-3 > a.selected {
-    animation-name: fade-in-selected-inner-text;
-    animation-duration: 1s;
 }
 
 .circle {
@@ -114,16 +106,6 @@ body {
     background-color: var(--bg-secondary);
 }
 
-.nav-1 > .circle, .nav-4 > .circle {
-    animation-name: fade-in-outer-circle;
-    animation-duration: 1.5s;
-}
-
-.nav-2 > .circle, .nav-3 > .circle {
-    animation-name: fade-in-inner-circle;
-    animation-duration: 1s;
-}
-
 .h-divider {
     height: 1px;
     width: 100%;
@@ -134,99 +116,6 @@ body {
     position: absolute;
     bottom: 0;
     background: linear-gradient(90deg, rgba(250,250,250,0) 2%, rgba(250,250,250,1) 15%, rgba(250,250,250,1) 85%, rgba(250,250,250,0) 98%);
-    animation-name: draw-line;
-    animation-duration: 1s;
-}
-
-@keyframes draw-line {
-    0% {
-        width: 0;
-        background-color: rgba(250, 250, 250, 0);
-        left: 50%;
-    }
-    100% {
-        width: 100%;
-        background: linear-gradient(90deg, rgba(250,250,250,0) 2%, rgba(250,250,250,1) 15%, rgba(250,250,250,1) 85%, rgba(250,250,250,0) 98%);
-        left: 0%;
-    }
-}
-
-@keyframes fade-in-inner-circle {
-    0% {
-        background-color: var(--bg-primary);
-    }
-    8% {
-        background-color: var(--bg-primary);
-    }
-    100% {
-        background-color: var(--bg-secondary);
-    }
-}
-
-@keyframes fade-in-outer-circle {
-    0% {
-        background-color: var(--bg-primary);
-    }
-    30% {
-        background-color: var(--bg-primary);
-    }
-    100% {
-        background-color: var(--bg-secondary);
-    }
-}
-
-@keyframes fade-in-inner-text {
-    0% {
-        color: var(--bg-primary)
-    }
-    8% {
-        color: var(--bg-primary)
-    }
-    100% {
-        color: var(--text-secondary)
-    }
-}
-
-@keyframes fade-in-selected-inner-text {
-    0% {
-        color: var(--bg-primary)
-    }
-    8% {
-        color: var(--bg-primary)
-    }
-    65% {
-        color: var(--text-secondary)
-    }
-    100% {
-        color: var(--text-primary)
-    }
-}
-
-@keyframes fade-in-outer-text {
-    0% {
-        color: var(--bg-primary)
-    }
-    30% {
-        color: var(--bg-primary)
-    }
-    100% {
-        color: var(--text-secondary)
-    }
-}
-
-@keyframes fade-in-selected-outer-text {
-    0% {
-        color: var(--bg-primary)
-    }
-    30% {
-        color: var(--bg-primary)
-    }
-    65% {
-        color: var(--text-secondary)
-    }
-    100% {
-        color: var(--text-primary)
-    }
 }
 
 /* 
@@ -241,11 +130,17 @@ body {
 }
 
 .content > h1.main-heading {
-    color: var(--text-secondary)
+    color: var(--text-secondary);
 }
 
 span {
     color: var(--text-accent-primary);
+    transition: color 0.4s ease;
+}
+
+span:hover {
+    color: var(--text-accent-ternary);
+    transition: color 0.4s ease;
 }
 
 /* 
@@ -271,9 +166,17 @@ span {
 
 #welcome {
     padding-top: 10rem;
+    display: none;
 }
 
-.welcome-statement {
+.welcome-statements {
     font-size: 1.1rem;
     line-height: 1.4rem;
+    margin: 0;
+}
+
+.welcome-h3:hover > span {
+    cursor: pointer;
+    color: var(--text-accent-ternary);
+    transition: color 0.4s ease;
 }
