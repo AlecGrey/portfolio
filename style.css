@@ -67,7 +67,6 @@ body {
 
 .navbar > ul > li > a.selected + .circle {
     transition: box-shadow 0.5s ease;
-    transition-delay: 0.8s;
     box-shadow: 0 0 2px 1px white;
 }
 
@@ -142,6 +141,10 @@ span:hover {
     color: var(--text-accent-ternary);
     transition: color 0.4s ease;
 }
+/* hide all content before animations */
+#welcome, #about, #projects, #contact {
+    display: none
+}
 
 /* 
 =========================================
@@ -166,7 +169,6 @@ span:hover {
 
 #welcome {
     padding-top: 10rem;
-    display: none;
 }
 
 .welcome-statements {
@@ -179,4 +181,39 @@ span:hover {
     cursor: pointer;
     color: var(--text-accent-ternary);
     transition: color 0.4s ease;
+}
+
+/* 
+=========================================
+                ABOUT
+=========================================
+*/
+
+#about {
+    padding-top: 10rem;
+}
+
+.scroll-box {
+    height: 60%;
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding-right: 1rem;
+}
+
+.scroll-bar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(0deg,rgba(250,250,250,1) 0%, rgba(250,250,250,1) 80%, rgba(250,250,250,0) 100%)
+}
+
+.scroll-box > p:first-child {
+    margin-top: 4rem;
 }

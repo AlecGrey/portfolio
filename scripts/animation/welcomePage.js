@@ -21,8 +21,11 @@ export function welcomeLoad() {
             '-=0.4'
         )
     }
-}
 
+    console.log(t1.totalDuration())
+    return t1
+}
+// DISPLAY MUST BE SET TO 'NONE' BY end of first second!
 export function welcomeHide() {
     // WELCOME PAGE IMAGE
     const welcomeDiv = document.getElementById('welcome')
@@ -40,17 +43,21 @@ export function welcomeHide() {
         { alpha: 0, xPercent: 1 }
     )
     let elements = [welcomeHeader, ...welcomeStatements]
-    console.log(elements.length)
+    let j = 0.2
     for (let i = elements.length - 1; i >= 0; i--) {
         t1.fromTo(
-            elements[i], 0.5,
+            elements[i], 0.5+j,
             { alpha: 1, xPercent: 0 },
             { alpha: 0, xPercent: 1 },
-            '-=0.4'
+            0
         )
+        j += 0.1
     }
     // hide background image
     t1.fromTo(welcomeImg, 0.5, { opacity: 1 }, { opacity: 0 }, 0)
     // hide welcome page
-    t1.fromTo(welcomeDiv, 0.1, { display: 'block' }, { display: 'none' })
+    t1.fromTo(welcomeDiv, 0.1, { display: 'block' }, { display: 'none' }, 0.9)
+    
+    console.log(t1.totalDuration())
+    return t1
 }

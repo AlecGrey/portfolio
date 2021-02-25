@@ -39,4 +39,7 @@ export default function navbarLoadAnimation() {
     // fade-in animation on circles
     t1.fromTo(innerCircles, 0.8, { alpha: 0 }, { alpha: 1 }, 0.2)
     t1.fromTo(outerCircles, 0.8, { alpha: 0 }, { alpha: 1 }, 0.5)
+
+    console.log(t1.totalDuration())
+    return t1
 }
