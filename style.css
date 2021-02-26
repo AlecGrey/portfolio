@@ -92,17 +92,10 @@ body {
 
 }
 
-.circle {
-    position: absolute;
+li > .circle {
     transform: translate(-50%, -20%);
     left: 50%;
     top: 100%;
-    height: 0.3rem;
-    width: 0.3rem;
-    border-radius: 50%;
-    box-shadow: 0 0 0 0 white;
-    transition: box-shadow 0.5s ease;
-    background-color: var(--bg-secondary);
 }
 
 .h-divider {
@@ -126,6 +119,16 @@ body {
 #main {
     margin-top: 2.5rem;
     padding: 0 8rem;
+}
+
+.circle {
+    position: absolute;
+    height: 0.3rem;
+    width: 0.3rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 white;
+    transition: box-shadow 0.5s ease;
+    background-color: var(--bg-secondary);
 }
 
 .content > h1.main-heading {
@@ -194,16 +197,17 @@ span:hover {
 }
 
 .scroll-box {
-    height: 55%;
+    height: 45%;
     position: fixed;
     bottom: 0;
     z-index: -1;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: start;
     align-items: flex-end;
     padding-right: 1rem;
-    margin-left: -3rem;
+    padding-bottom: 2rem;
+    margin-left: -5rem;
 }
 
 .scroll-bar {
@@ -211,12 +215,14 @@ span:hover {
     bottom: 0;
     right: 0;
     width: 1px;
-    background: linear-gradient(0deg,rgba(250,250,250,1) 0%, rgba(250,250,250,1) 80%, rgba(250,250,250,0) 100%)
+    background: linear-gradient(180deg,rgba(250,250,250,1) 0%, rgba(250,250,250,1) 60%, rgba(250,250,250,0) 90%)
 }
 
 .scroll-box > p {
     color: var(--text-secondary);
     transition: color 0.4s ease;
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
 }
 
 .scroll-box > p.selected {
@@ -233,4 +239,15 @@ span:hover {
 .scroll-box > p:active {
     color: var(--text-accent-ternary);
     transition: color 0.4s ease;
+}
+
+.scroll-box > .circle {
+    top: 0;
+    right: 0;
+    transform: translateX(45%)
+}
+
+#about > .content {
+    margin-left: 3.5rem;
+    padding: 0 3rem;
 }
