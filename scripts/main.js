@@ -49,6 +49,12 @@ const hideCurrentSection = () => {
         case 'about-link':
             animations['aboutLoad'].pause()
             playAnimation('aboutHide')
+            // reset selection to first item
+            let g = document.querySelector('p.glance')
+            if ( !g.classList.contains('selected') ) {
+                deselectCurrentItem()
+                g.classList.add('selected')
+            }
             break
 
             case 'projects-link':
