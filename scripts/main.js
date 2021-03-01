@@ -1,5 +1,5 @@
 import { welcomeLoad, welcomeHide } from './animation/welcomePage.js'
-import { aboutLoad, aboutHide, scrollToItemByIndex } from './animation/aboutPage.js'
+import { aboutLoad, aboutHide, scrollToItemByIndex, scrollToPagePositionByClassName } from './animation/aboutPage.js'
 import navbarLoad from './animation/navbarLoad.js';
 
 // ================================================================
@@ -126,7 +126,8 @@ const setNavLinkEvents = () => {
 // WELCOME PAGE FUNCTIONS
 const switchToAboutPage = () => {
     hideCurrentSection()
-    setTimeout(() => revealSectionByTag(navAbout), 1000)
+    navAbout.classList.add('selected')
+    setTimeout(() => revealSectionByTagName('about-link'), 1000)
 }
 
 // ABOUT PAGE FUNCTIONS
@@ -139,10 +140,18 @@ const setScrollItemEvents = () => {
     for (const item of aboutScrollItems) {
         let i = n
         item.addEventListener('click', e => {
+            // short circuit on currently selected item
             if (e.target.classList.contains('selected')) return
+            // select the classname of the selected item to pass to animate method
+            const className = e.target.className
+            // remove selected from previous item
             deselectCurrentItem()
+            // add selected to the new item
             e.target.classList.add('selected')
+            // animate the scrollbar
             scrollToItemByIndex(i)
+            // animate the page to scroll to the subsection
+            scrollToPagePositionByClassName(className)
         })
         n += 1
     }

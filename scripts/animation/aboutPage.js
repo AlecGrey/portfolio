@@ -71,5 +71,15 @@ export function scrollToItemByIndex(i) {
     // set timeline
     const t1 = new TimelineMax()
     // move scrollbar to desired position
-    t1.to(innerScrollBar, 1, { bottom: position, ease: Power4.easeOut })
+    t1.to(innerScrollBar, 1.5, { bottom: position, ease: Power3.easeOut })
+}
+
+export function scrollToPagePositionByClassName(className) {
+    console.log(className)
+    // set timeline
+    const t1 = new TimelineMax()
+    // select the div
+
+    // scroll page to position
+    t1.to(window, 1.5, { scrollTo: `.${className}-content`, ease: Power3.easeOut })
 }
