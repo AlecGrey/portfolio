@@ -1,6 +1,7 @@
 import { welcomeLoad, welcomeHide } from './animation/welcomePage.js'
-import { aboutLoad, aboutHide, scrollToItemByIndex, scrollToPagePositionByClassName } from './animation/aboutPage.js'
+import { aboutLoad, aboutHide, scrollToItemByIndex, scrollToPagePositionByClassName, expandEducationContent } from './animation/aboutPage.js'
 import navbarLoad from './animation/navbarLoad.js';
+import { constructWelcomePageObject } from './welcome.js';
 
 // ================================================================
 //                    GRAB NECESSARY PAGE TAGS
@@ -80,6 +81,7 @@ const revealSectionByTagName = name => {
 
         case 'about-link':
             playAnimation('aboutLoad')
+            toggleEducationEvents()
             break
 
             case 'projects-link':
@@ -157,15 +159,35 @@ const setScrollItemEvents = () => {
     }
 }
 
+const toggleEducationEvents = () => {
+    const educationContainers = document.querySelectorAll('.education-content > div')
+    for (const container of educationContainers) {
+        let [header, content] = container.children
+        const animation = expandEducationContent(content)
+        header.addEventListener('click', () => {
+            if (container.classList.contains('selected')) {
+                container.classList.remove('selected')
+                animation.reverse()
+            } else {
+                container.classList.add('selected')
+                animation.play()
+            }
+        })
+    }
+}
+
 // ================================================================
 //                    EVENT LISTENERS FOR PAGE
 // ================================================================
 
 // NAV EVENTS
 setNavLinkEvents()
+
 // WELCOME PAGE EVENTS
 welcomeToAboutTag.addEventListener('click', switchToAboutPage)
+
 // ABOUT PAGE EVENTS
 setScrollItemEvents()
+
 // LOAD IN THE PAGE
 pageLoad()

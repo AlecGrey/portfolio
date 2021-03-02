@@ -7,7 +7,7 @@ export function aboutLoad() {
     // ESTABLISH NEW TIMELINE
     const t1 = new TimelineMax()
     // reveal about page
-    t1.fromTo(aboutDiv, 0.1, { display: 'none' }, { display: 'block' })
+    t1.set(aboutDiv, { display: 'block' })
     // reveal scroll bar
     t1.fromTo(scrollBar, 0.8, { height: '0%' }, { height: '100%' }, 0)
     // expand inner scrollbar
@@ -75,11 +75,22 @@ export function scrollToItemByIndex(i) {
 }
 
 export function scrollToPagePositionByClassName(className) {
-    console.log(className)
     // set timeline
     const t1 = new TimelineMax()
-    // select the div
-
     // scroll page to position
     t1.to(window, 1.5, { scrollTo: `.${className}-content`, ease: Power3.easeOut })
+}
+
+export function expandEducationContent(content) {
+    const height = content.offsetHeight
+    console.log(height)
+    // set timeline
+    const t1 = new TimelineMax({ paused: true, reversed: true })
+    // expand div
+    t1.fromTo(
+        content, 0.7,
+        { height: 0, autoAlpha: 0, display: 'none' }, 
+        { height: height, autoAlpha: 1, display: 'block', ease: Power3.easeOut }
+    )
+    return t1
 }
