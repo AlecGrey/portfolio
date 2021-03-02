@@ -153,6 +153,10 @@ span:hover {
     /* display: none */
 }
 
+p > em {
+    color: var(--text-accent-primary)
+}
+
 /* 
 =========================================
                 WELCOME
@@ -300,12 +304,11 @@ span:hover {
     height: 2.5rem;
     border-radius: 0.5rem;
     margin-top: auto;
-    margin-bottom: 0;
+    margin-bottom: auto;
 }
 
 .education-heading > img + * {
-    margin: auto;
-    margin-left: 1rem;
+    margin: auto 1rem;
 }
 
 .education-heading > h2 > span {
@@ -327,9 +330,22 @@ span:hover {
     transition: color 0.2s ease;
 }
 
+.education-heading > h2 + * {
+    text-align: right;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
 .education-inner-content {
     position: relative;
     visibility: hidden;
     height: auto;
     overflow: hidden;
+
+    display: flex;
+    justify-content: stretch;
+}
+
+.education-inner-content > div + div {
+    flex-grow: 1;
 }

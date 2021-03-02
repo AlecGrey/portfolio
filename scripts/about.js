@@ -49,19 +49,28 @@ function addPageContent() {
                     <div class='education-heading'>
                         <img src='./assets/flatiron-logo.jpg' alt='flatiron school logo'>
                         <h2><span>Flatiron School</span> - Software Engineering Immersive</h2>
+                        <h3>Oct 2020 - Jan 2021</h3>
                     </div>
                     <div class='education-inner-content'>
-                        <p>stuff</p>
-                        <p>and</p>
-                        <p>things</p>
-                        <p>and</p>
-                        <p>stuff</p>
+                        <div>
+                            <h3>Job ready in 15-weeks.</h3>
+                            <p>Full-stack software engineering bootcamp.  We learned how to build back-to-front, using the fundamentals of MVC to create a full-stack Ruby on Rails application by <em>week 6</em>.  We built on top of this with Javascript frontend development, and integrating React with Redux for fast and dynamic user interfaces.</p>
+                            <p>I learned how to build professional web applications, with considerations on security & authorization, user experience, rapid API queries, and time/memory optimization.</p>
+                        </div>
+                        <div>
+                            <h4>Skills & Technologies learned</h4>
+                            <ul>
+                            
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
                 <div class='wwu-education'>
                     <div class='education-heading'>
                         <img src='./assets/wwu-logo-2.svg' alt='western washington university logo'>
                         <h2><span>Western Washington University</span> - M.S. Exercise Science</h2>
+                        <h3>Jan 2016 - Dec 2018</h3>
                     </div>
                     <div class='education-inner-content'>
                         <p>stuff</p>
@@ -94,14 +103,11 @@ function addPageEvents() {
 
 export function aboutLoad() {
     // GRAB PAGE ELEMENTS
-    const aboutDiv = document.getElementById('about')
     const scrollBar = document.querySelector('.scroll-bar')
     const innerScrollBar = document.querySelector('.scroll-bar.inner')
     const scrollItems = document.querySelectorAll('.scroll-box > p')
     // ESTABLISH NEW TIMELINE
     const t1 = new TimelineMax()
-    // reveal about page
-    t1.set(aboutDiv, { display: 'block' })
     // reveal scroll bar
     t1.fromTo(scrollBar, 0.8, { height: '0%' }, { height: '100%' }, 0)
     // expand inner scrollbar
@@ -129,7 +135,6 @@ export function aboutLoad() {
 // DISPLAY MUST BE SET TO 'NONE' BY end of first second!
 function aboutHide() {
     // GRAB PAGE ELEMENTS
-    const aboutDiv = document.getElementById('about')
     const scrollBar = document.querySelector('.scroll-bar')
     const innerScrollBar = document.querySelector('.scroll-bar.inner')
     const scrollItems = document.querySelectorAll('.scroll-box > p')
@@ -150,8 +155,6 @@ function aboutHide() {
         )
         j += (0.5 / scrollItems.length)
     }
-    // hide about page
-    t1.fromTo(aboutDiv, 0.1, { display: 'block' }, { display: 'none' }, 0.9)
 
     console.log(t1.totalDuration())
     return t1
@@ -183,14 +186,10 @@ function expandEducationContent(content) {
     const t1 = new TimelineMax({ paused: true, reversed: true })
     // expand div
     t1.fromTo(
-        content, 1,
+        content, 0.5,
         { height: 0, autoAlpha: 0, display: 'none' }, 
-        { height: height, autoAlpha: 1, display: 'block' }
+        { height: height, autoAlpha: 1, display: 'flex' }
     )
-    // ease on expand
-    // t1.to(content, t1.duration, { time: 1, ease: Power3.easeOut })
-    // // ease on collapse/reverse
-    // t1.to(content, t1.duration, { time: 0, ease: Power3.easeIn })
 
     return t1
 }

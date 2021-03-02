@@ -50,7 +50,6 @@ function dismountPage() {
 
 function welcomeLoad() {
     // WELCOME PAGE IMAGE
-    const welcomeDiv = document.getElementById('welcome')
     const welcomeImg = document.getElementById('welcome-bg-img')
     // WELCOME HEADER
     const welcomeHeader = document.querySelector('.main-heading')
@@ -58,8 +57,6 @@ function welcomeLoad() {
     const welcomeH3 = document.querySelector('h3.welcome-h3')
     // INSTATIATE TIMELINE
     const t1 = new TimelineMax()
-    // reveal welcome div
-    t1.set(welcomeDiv, { display: 'block' })
     // fade-in welcome image
     t1.fromTo(welcomeImg, 0.8, { opacity: 0 }, { opacity: 1 }, 0)
     // consistent fade-in with all welcome elements

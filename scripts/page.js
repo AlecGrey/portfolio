@@ -8,6 +8,13 @@ export default function constructMainPageObject() {
     // SUB-PAGE OBJECTS
     const welcome = welcomeConstructor()
     const about = aboutConstructor()
+    // ANIMATION HOLDER
+    page.animations = {
+        'welcomeLoad': null,
+        'aboutLoad': null,
+        'projectsLoad': null,
+        'contactLoad': null
+    }
 
     page.load = () => {
         // SET RELEVANT PAGE EVENTS
@@ -35,11 +42,13 @@ export default function constructMainPageObject() {
         switch (current.className) {
             case 'welcome-link':
                 // animate and dismount
+                page.animations.welcomeLoad.pause()
                 welcome.animations.hide() // fx ends with a call to dismount DOM element
                 break
 
             case 'about-link':
                 // animate and dismount
+                page.animations.aboutLoad.pause()
                 about.animations.hide() // fx ends with a call to dismount DOM element
                 break
 
@@ -62,17 +71,18 @@ export default function constructMainPageObject() {
         document.querySelector(`.${name}`).classList.add('selected')
         // execute animation depending on className
         switch(name) {
+            // begin animation and save in hash for pausing
             case 'welcome-link':
                 // mount page and animate in
                 welcome.construct()
-                welcome.animations.load()
+                page.animations.welcomeLoad = welcome.animations.load()
                 welcomeEventListeners()
                 break
 
             case 'about-link':
                 // mount page and animate in
                 about.construct()
-                about.animations.load()
+                page.animations.aboutLoad = about.animations.load()
                 aboutEventListeners()
                 break
 
