@@ -1,4 +1,5 @@
 export default function welcomeConstructor() {
+    // pages contain static HTML blueprints & animations ONLY
     const page = {}
 
     // construction

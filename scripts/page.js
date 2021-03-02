@@ -1,11 +1,13 @@
 import welcomeConstructor from './welcome.js';
+import aboutConstructor from './about.js';
 
 export default function constructMainPageObject() {
+    // CONSTRUCTS PAGE WITH SUBPAGES AND EVENT LISTENERS
     // MAIN PAGE OBJECT
     const page = {}
-    
     // SUB-PAGE OBJECTS
     const welcome = welcomeConstructor()
+    const about = aboutConstructor()
 
     page.load = () => {
         // SET RELEVANT PAGE EVENTS
@@ -18,6 +20,14 @@ export default function constructMainPageObject() {
     // HELPER METHODS
     // ==============
 
+    const navigateEvent = e => {
+        if (e.target.classList.contains('selected')) return
+        // ELSE
+        hideCurrentSection()
+        // wait for animation to end before animating in new section
+        setTimeout(() => revealSectionByClassName(e.target.className), 1000)
+    }
+
     const hideCurrentSection = () => {
         const current = document.querySelector('a.selected')
         current.classList.remove('selected')
@@ -29,7 +39,8 @@ export default function constructMainPageObject() {
                 break
 
             case 'about-link':
-                // insert functionality
+                // animate and dismount
+                about.animations.hide() // fx ends with a call to dismount DOM element
                 break
 
                 case 'projects-link':
@@ -55,10 +66,14 @@ export default function constructMainPageObject() {
                 // mount page and animate in
                 welcome.construct()
                 welcome.animations.load()
+                welcomeEventListeners()
                 break
 
             case 'about-link':
-                // insert functionality
+                // mount page and animate in
+                about.construct()
+                about.animations.load()
+                aboutEventListeners()
                 break
 
             case 'projects-link':
@@ -75,6 +90,11 @@ export default function constructMainPageObject() {
         }
     }
 
+    // =================================
+    //   ADDING EVENT LISTENERS
+    // =================================
+
+    // NAVBAR EVENTS
     const addEventsToNavbar = () => {
         const elements = document.querySelectorAll('.navbar > ul > li > a')
         for (const el of elements) {
@@ -82,12 +102,18 @@ export default function constructMainPageObject() {
         }
     }
 
-    const navigateEvent = e => {
-        if (e.target.classList.contains('selected')) return
-        // ELSE
-        hideCurrentSection()
-        // wait for animation to end before animating in new section
-        setTimeout(() => revealSectionByClassName(e.target.className), 1000)
+    // WELCOME PAGE-CHANGING EVENT
+    const welcomeEventListeners = () => {
+        const el = document.querySelector('.welcome-h3 > span')
+        el.addEventListener('click', () => {
+            hideCurrentSection()
+            // wait for animation to end before animating in new section
+            setTimeout(() => revealSectionByClassName('about-link'), 1000)
+        })
+    }
+
+    const aboutEventListeners = () => {
+        about.addPageEvents()
     }
 
     return page

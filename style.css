@@ -150,7 +150,7 @@ span:hover {
 }
 /* hide all content before animations */
 #welcome, #about, #projects, #contact {
-    display: none
+    /* display: none */
 }
 
 /* 
