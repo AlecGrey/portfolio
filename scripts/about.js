@@ -40,7 +40,7 @@ function addPageContent() {
         <div class='content'>
             <div class='glance-content'>
                 <h1>I believe well rounded <span>content</span> comes from well rounded <span>people</span>.</h1>
-                <p>As a <span>developer</span>, I create content that is professional, but fun.  Engaging to the user, yet not demanding of them.  I am constantly searching for better ways to solve problems, and to add new tools to my belt.</p>
+                <p>As a <span>developer</span>, I want my content to be professional, but fun.  Engaging to the user, yet not demanding of them.  I am constantly searching for better ways to solve problems, and to add new tools to my belt.</p>
                 <p>As a <span>human</span>, I am a dedicated worker, an early communicator, and an eager learner.  While working on a team, I always strive for humility; to find ways to maximize my own potential, and lift the potential of those around me.</p>
             </div>
             <div class='education-content'>
@@ -70,7 +70,8 @@ function addPageContent() {
                                 <h4>Technologies & Frameworks</h4>
                                 <ul>
                                     <li>Rails</li>
-                                    <li>React with Redux</li>
+                                    <li>React</li>
+                                    <li>Redux</li>
                                     <li>PostgreSQL*</li>
                                     <li>Bootstrap*</li>
                                     <li>Websockets*</li>
@@ -105,7 +106,7 @@ function addPageContent() {
                             <h3>Data first.</h3>
                             <p>Advanced research degree covering the most recent topics and ideologies of human performance, injury prevention, and physical health.  Partook in several research projects in WWU's state-of-the-art biomechanics lab, including a cumulative solo research project.</p>
                             <p>Performed data capture using an integrated Vicon capture system, with a 3D capture, force measurements, and separate tools for metabolic testing.  Learned statistical analysis using SPSS and excel.</p>
-                            <p>You can access my Master's Thesis <a href='https://cedar.wwu.edu/cgi/viewcontent.cgi?article=1803&context=wwuet' target="_blank">here</a></p>
+                            <h4>You can access my Master's Thesis <a href='https://cedar.wwu.edu/cgi/viewcontent.cgi?article=1803&context=wwuet' target="_blank">here</a></h4>
                         </div>
                     </div>
                 </div>
@@ -389,4 +390,18 @@ function addEducationExpandEvent() {
             }
         })
     }
+
+    function collapseEducationOnScroll(e) {
+        const el = e.target
+        // short circuit event if still on current section
+        if (el.tagName !== 'P' || el.classList.contains('education')) return
+        // ELSE find the current selected
+        const current = document.querySelector('.education-content > .selected')
+        // remove selected from classname
+        current.classList.remove('selected')
+        // use classname to determine which animation to run
+        animations[current.className].reverse(0.5)
+    }
+
+    document.querySelector('div.scroll-box').addEventListener('click', collapseEducationOnScroll)
 }

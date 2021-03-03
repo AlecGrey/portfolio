@@ -371,11 +371,17 @@ a:active {
     margin-right: 2rem;
 }
 
-.summary > h3 {
-    margin-left: 1rem;
+.education-inner-content > .summary > h3 {
+    color: var(--text-secondary);
+    transition: color 0.5s ease;
 }
 
-.summary > p > a {
+.education-inner-content:hover > .summary > h3 {
+    color: var(--text-primary);
+    transition: color 0.5s ease;
+}
+
+.summary > h4 > a {
     text-decoration: underline;
 }
 
