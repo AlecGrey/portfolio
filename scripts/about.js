@@ -29,7 +29,6 @@ function addPageContent() {
     aboutDiv.id = 'about'
     // add all inner content to div
     aboutDiv.innerHTML = `
-        <div id='about'>
         <div class='scroll-box'>
             <p class='glance selected'>at a glance</p>
             <p class='education'>education</p>
@@ -52,17 +51,46 @@ function addPageContent() {
                         <h3>Oct 2020 - Jan 2021</h3>
                     </div>
                     <div class='education-inner-content'>
-                        <div>
+                        <div class='summary'>
                             <h3>Job ready in 15-weeks.</h3>
                             <p>Full-stack software engineering bootcamp.  We learned how to build back-to-front, using the fundamentals of MVC to create a full-stack Ruby on Rails application by <em>week 6</em>.  We built on top of this with Javascript frontend development, and integrating React with Redux for fast and dynamic user interfaces.</p>
                             <p>I learned how to build professional web applications, with considerations on security & authorization, user experience, rapid API queries, and time/memory optimization.</p>
                         </div>
-                        <div>
-                            <h4>Skills & Technologies learned</h4>
-                            <ul>
-                            
-                            </ul>
+                        <div class='details'>
+                            <div>
+                                <h4>Languages</h4>
+                                <ul>
+                                    <li>Ruby</li>
+                                    <li>Javascript</li>
+                                    <li>HTML, CSS</li>
+                                    <li>SQL</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Technologies & Frameworks</h4>
+                                <ul>
+                                    <li>Rails</li>
+                                    <li>React with Redux</li>
+                                    <li>PostgreSQL*</li>
+                                    <li>Bootstrap*</li>
+                                    <li>Websockets*</li>
+                                    <li>Heroku & Firebase*</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Skills</h4>
+                                <ul>
+                                    <li>OO Programming</li>
+                                    <li>RESTful API</li>
+                                    <li>Auth & web tokens</li>
+                                    <li>Data structures</li>
+                                    <li>Git/version control</li>
+                                    <li>Web Scraping*</li>
+                                    <li>Deployment*</li>
+                                </ul>
+                            </div>
                         </div>
+                        <p class='footnote'><em>* self taught during program</em></p>
 
                     </div>
                 </div>
@@ -73,17 +101,17 @@ function addPageContent() {
                         <h3>Jan 2016 - Dec 2018</h3>
                     </div>
                     <div class='education-inner-content'>
-                        <p>stuff</p>
-                        <p>and</p>
-                        <p>things</p>
-                        <p>and</p>
-                        <p>stuff</p>
+                        <div class='summary'>
+                            <h3>Data first.</h3>
+                            <p>Advanced research degree covering the most recent topics and ideologies of human performance, injury prevention, and physical health.  Partook in several research projects in WWU's state-of-the-art biomechanics lab, including a cumulative solo research project.</p>
+                            <p>Performed data capture using an integrated Vicon capture system, with a 3D capture, force measurements, and separate tools for metabolic testing.  Learned statistical analysis using SPSS and excel.</p>
+                            <p>You can access my Master's Thesis <a href='https://cedar.wwu.edu/cgi/viewcontent.cgi?article=1803&context=wwuet' target="_blank">here</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class='skills-content'></div>
             <div class='other-side-content'></div>
-        </div>
     `
     main.appendChild(aboutDiv)
 }
@@ -225,17 +253,31 @@ function addScrollEvents() {
 function addEducationExpandEvent() {
     // get all education containers
     const educationContainers = document.querySelectorAll('.education-content > div')
+    // hash to capture all animations for referencing
+    const animations = {}
     // for each container, assign conditional event to expand or collapse the div
     for (const container of educationContainers) {
         let [header, content] = container.children
         const animation = expandEducationContent(content)
+        // save animation to hash
+        animations[container.className] = animation
+        // add event listener
         header.addEventListener('click', () => {
             if (container.classList.contains('selected')) {
+                // remove selected class and collapse
                 container.classList.remove('selected')
-                animation.reverse()
+                animation.reverse(0.5)
             } else {
+                // collapse currently selected div and remove selected class
+                let prev = document.querySelector('.education-content > div.selected')
+                if (prev !== null) {
+                    prev.classList.remove('selected')
+                    animations[prev.className].reverse(0.5)
+                    setTimeout(() => animation.play(0), 500) // short delay to smooth the animation
+                } else {
+                    animation.play(0)
+                }
                 container.classList.add('selected')
-                animation.play()
             }
         })
     }

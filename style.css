@@ -154,7 +154,29 @@ span:hover {
 }
 
 p > em {
-    color: var(--text-accent-primary)
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+p > em:hover {
+    color: var(--text-accent-ternary);
+    transition: color 0.5s ease;
+}
+
+a {
+    color: var(--text-secondary);
+    transition: color 0.5s ease;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--text-primary);
+    transition: color 0.5s ease;
+}
+
+a:active {
+    color: var(--text-accent-ternary);
+    transition: color 0.3s ease;
 }
 
 /* 
@@ -343,9 +365,48 @@ p > em {
     overflow: hidden;
 
     display: flex;
-    justify-content: stretch;
+    flex-direction: column;
+    margin-left: 1rem;
+    margin-right: 2rem;
 }
 
-.education-inner-content > div + div {
+.summary > h3 {
+    margin-left: 1rem;
+}
+
+.summary > p > a {
+    text-decoration: underline;
+}
+
+.education-inner-content > .details {
+    display: flex;
+    justify-content: space-around;
+}
+
+.education-inner-content > .details > div {
+    flex: 1 1 auto;
+}
+
+.education-inner-content > .details > div > h4 {
+    margin-left: 3rem;
+}
+
+.education-inner-content > .details > div > ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 5rem;
+}
+
+.education-inner-content > .details > div > ul {
     flex-grow: 1;
+    flex-shrink: 0;
+}
+
+p.footnote {
+    margin: 0 1rem 0 auto;
+}
+
+p.footnote > em {
+    color: var(--text-secondary)
 }
