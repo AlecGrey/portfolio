@@ -129,7 +129,8 @@ function addPageEvents() {
 //    ANIMATIONS
 // ===============
 
-export function aboutLoad() {
+// PAGE IN / OUT
+function aboutLoad() {
     // GRAB PAGE ELEMENTS
     const scrollBar = document.querySelector('.scroll-bar')
     const innerScrollBar = document.querySelector('.scroll-bar.inner')
@@ -157,10 +158,12 @@ export function aboutLoad() {
         )
     }
 
+    glanceSectionIn()
+
     console.log(t1.totalDuration())
     return t1
 }
-// DISPLAY MUST BE SET TO 'NONE' BY end of first second!
+
 function aboutHide() {
     // GRAB PAGE ELEMENTS
     const scrollBar = document.querySelector('.scroll-bar')
@@ -188,6 +191,7 @@ function aboutHide() {
     return t1
 }
 
+// PAGE SCROLLING ANIMATIONS
 function scrollToItemByIndex(i) {
     // grab inner scroll bar
     const innerScrollBar = document.querySelector('.scroll-bar.inner')
@@ -196,7 +200,7 @@ function scrollToItemByIndex(i) {
     // set timeline
     const t1 = new TimelineMax()
     // move scrollbar to desired position
-    t1.to(innerScrollBar, 1.5, { bottom: position, ease: Power3.easeOut })
+    t1.to(innerScrollBar, 2, { bottom: position, ease: Power3.easeOut })
 }
 
 function scrollToPagePositionByClassName(className) {
@@ -204,6 +208,68 @@ function scrollToPagePositionByClassName(className) {
     const t1 = new TimelineMax()
     // scroll page to position
     t1.to(window, 1.5, { scrollTo: `.${className}-content`, ease: Power3.easeOut })
+}
+
+// ===== SUBSECTION ANIMATIONS ===== //
+// == GLANCE == //
+function glanceSectionIn() {
+    const section = document.querySelector('.glance-content')
+    const t1 = new TimelineMax()
+    // reveal section
+    t1.set(section, { visibility: 'visible' })
+    // fade in section
+    t1.fromTo(section, 1.5, {alpha: 0}, {alpha: 1, ease: Power1.easeOut})
+
+    return t1
+}
+
+function glanceSectionOut() {
+    const section = document.querySelector('.glance-content')
+    const t1 = new TimelineMax()
+    // fade out section
+    t1.fromTo(section, 0.5, {alpha: 1}, {alpha: 0, ease: Power3.easeOut})
+
+    return t1
+}
+
+//  == EDUCATION == //
+function educationContentIn() {
+    const section = document.querySelector('.education-content')
+    // set timeline
+    const t1 = new TimelineMax()
+    // reveal section
+    t1.set(section, { visibility: 'visible' })
+    let i = 0
+    for (const el of section.children) {
+        t1.fromTo(
+            el, 1.5 - (i * 0.3),
+            { alpha: 0, xPercent: 100 },
+            { alpha: 1, xPercent: 0, ease: Power3.easeOut },
+            i * 0.3
+        )
+        i++
+    }
+
+    return t1
+}
+
+function educationContentOut() {
+    const section = document.querySelector('.education-content')
+    // set timeline
+    const t1 = new TimelineMax
+    // animate out each tile
+    let i = 1
+    for (const el of section.children) {
+        t1.fromTo(
+            el, 0.8,
+            { alpha: 1, xPercent: 0 },
+            { alpha: 0, xPercent: 5 + (2 * i), ease: Power3.easeOut },
+            0
+        )
+        i++
+    }
+
+    return t1
 }
 
 function expandEducationContent(content) {
@@ -237,16 +303,53 @@ function addScrollEvents() {
             if (e.target.classList.contains('selected')) return
             // ELSE
             const className = e.target.className
-            // remove selected from previous item
-            document.querySelector('.scroll-box > p.selected').classList.remove('selected')
+            // find previously selected section
+            const prev = document.querySelector('.scroll-box > p.selected')
+            prev.classList.remove('selected')
+            // animate out previous section
+            animateSectionOut(prev.className)
             // add selected to the new item
             e.target.classList.add('selected')
             // animate the scrollbar
             scrollToItemByIndex(i)
             // animate the page to correct position
             scrollToPagePositionByClassName(className)
+            // animate in the subsection
+            setTimeout(() => animateSectionIn(className), 500)
         })
         n++
+    }
+}
+
+function animateSectionIn(section) {
+    // execute animation depending on the passed in section
+    switch (section) {
+        case 'glance':
+            glanceSectionIn()
+            break
+        case 'education':
+            educationContentIn()
+            break
+        case 'skills':
+            break
+        case 'other-side':
+            break
+    }
+}
+
+function animateSectionOut(section) {
+    // execute animation depending on the passed in section
+    switch (section) {
+        case 'glance':
+            glanceSectionOut()
+            break
+        case 'education':
+            educationContentOut()
+            break
+        case 'skills':
+            break
+        case 'other-side':
+            break
     }
 }
 
