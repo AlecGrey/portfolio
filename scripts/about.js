@@ -157,10 +157,9 @@ function aboutLoad() {
             delay
         )
     }
-
+    // animate in the first section
     glanceSectionIn()
-
-    console.log(t1.totalDuration())
+    // return timeline
     return t1
 }
 
@@ -186,8 +185,9 @@ function aboutHide() {
         )
         j += (0.5 / scrollItems.length)
     }
-
-    console.log(t1.totalDuration())
+    // animate out the current section
+    hideCurrentSection()
+    // return timeline
     return t1
 }
 
@@ -263,7 +263,7 @@ function educationContentOut() {
         t1.fromTo(
             el, 0.8,
             { alpha: 1, xPercent: 0 },
-            { alpha: 0, xPercent: 5 + (2 * i), ease: Power3.easeOut },
+            { alpha: 0, xPercent: 4 + (1 * i), ease: Power1.easeOut },
             0
         )
         i++
@@ -275,7 +275,6 @@ function educationContentOut() {
 function expandEducationContent(content) {
     // get div height for animation
     const height = content.offsetHeight
-    console.log('INITIALIZED EVENT FOR: ', content, 'WITH DIV HEIGHT: ', height)
     // set timeline
     const t1 = new TimelineMax({ paused: true, reversed: true })
     // expand div
@@ -351,6 +350,12 @@ function animateSectionOut(section) {
         case 'other-side':
             break
     }
+}
+
+function hideCurrentSection() {
+    const section = document.querySelector('.scroll-box > p.selected')
+    section.classList.remove('selected')
+    animateSectionOut(section.className)
 }
 
 function addEducationExpandEvent() {

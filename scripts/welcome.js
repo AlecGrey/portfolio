@@ -68,8 +68,7 @@ function welcomeLoad() {
             '-=0.4'
         )
     }
-
-    console.log(t1.totalDuration())
+    // return the timeline
     return t1
 }
 // DISPLAY MUST BE SET TO 'NONE' BY end of first second!
@@ -104,7 +103,6 @@ function welcomeHide() {
     t1.fromTo(welcomeImg, 0.5, { opacity: 1 }, { opacity: 0 }, 0)
     // hide welcome page
     t1.fromTo(welcomeDiv, 0.1, { display: 'block' }, { display: 'none' }, 0.9)
-    
-    console.log(t1.totalDuration())
+    // return the timeline
     return t1
 }
