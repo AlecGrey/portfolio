@@ -29,14 +29,17 @@ function addPageContent() {
     aboutDiv.id = 'about'
     // add all inner content to div
     aboutDiv.innerHTML = `
-        <div class='scroll-box'>
-            <p class='glance selected'>at a glance</p>
-            <p class='education'>education</p>
-            <p class='skills'>skills</p>
-            <p class='other-side'>the other side</p>
-            <div class='scroll-bar'></div>
-            <div class='scroll-bar inner'></div>
+        <div class='scroll-container'>
+            <div class='scroll-box'>
+                <p class='glance selected'>at a glance</p>
+                <p class='education'>education</p>
+                <p class='skills'>skills</p>
+                <p class='other-side'>the other side</p>
+                <div class='scroll-bar'></div>
+                <div class='scroll-bar inner'></div>
+            </div>
         </div>
+        
         <div class='content'>
             <div class='glance-content'>
                 <h1>I believe well rounded <span>content</span> comes from well rounded <span>people</span>.</h1>
@@ -111,10 +114,12 @@ function addPageContent() {
                 </div>
             </div>
             <div class='skills-content'>
-                <div class='skill-icon'>1</div>
-                <div class='skill-icon'>2</div>
-                <div class='skill-icon'>3</div>
-                <div class='skill-icon'>4</div>
+                <div class='skill-icons'>
+                    <div class='icon'>1</div>
+                    <div class='icon'>2</div>
+                    <div class='icon'>3</div>
+                    <div class='icon'>4</div>
+                </div>
             </div>
             <div class='other-side-content'></div>
     `
@@ -236,6 +241,7 @@ function glanceSectionOut() {
     const t1 = new TimelineMax()
     // fade out section
     t1.fromTo(section, 0.5, {alpha: 1}, {alpha: 0, ease: Power3.easeOut})
+    t1.set(section, { visibility: 'hidden' })
 
     return t1
 }
@@ -276,6 +282,7 @@ function educationContentOut() {
         )
         i++
     }
+    t1.set(section, { visibility: 'hidden' })
 
     return t1
 }
@@ -313,6 +320,7 @@ function skillsSectionOut() {
     const t1 = new TimelineMax()
     // hide section
     t1.fromTo(section, 0.5, {alpha: 1}, {alpha: 0, ease: Power3.easeOut})
+    t1.set(section, { visibility: 'hidden' })
 
     return t1
 }
@@ -327,19 +335,19 @@ function orbitElementAfterDelay(el, time, size, index) {
 
     const t1 = new TimelineMax({ paused: true, repeat: -1 })
     // set starting position
-    t1.set(el, { bottom: '10%', left: '80%', height: sizes[1], width: sizes[1] })
+    t1.set(el, { right: '100%', xPercent: 100 , bottom: '50%', yPercent: 50, height: sizes[1], width: sizes[1]})
     // set first quarter rotation
-    t1.to(el, qTime, { left: '50%', ease: Power1.easeIn }, 0)
-    t1.to(el, qTime, { bottom: '16%', height: sizes[0], width: sizes[0], ease: Power1.easeOut }, 0)
+    t1.to(el, qTime, { right: '50%', xPercent: 50, ease: Power1.easeIn }, 0)
+    t1.to(el, qTime, { bottom: '100%', yPercent: 100, height: sizes[0], width: sizes[0], ease: Power1.easeOut }, 0)
     // set second quarter rotation
-    t1.to(el, qTime, { left: '20%', ease: Power1.easeOut }, qTime)
-    t1.to(el, qTime, { bottom: '10%', height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime)
+    t1.to(el, qTime, { right: '0%', xPercent: 0, ease: Power1.easeOut }, qTime)
+    t1.to(el, qTime, { bottom: '50%', yPercent: 50, height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime)
     // set third quarter rotation
-    t1.to(el, qTime, { left: '50%', ease: Power1.easeIn }, qTime * 2)
-    t1.to(el, qTime, { bottom: '2%', height: sizes[2], width: sizes[2], ease: Power1.easeOut }, qTime * 2)
+    t1.to(el, qTime, { right: '50%', xPercent: 50, ease: Power1.easeIn }, qTime * 2)
+    t1.to(el, qTime, { bottom: '0%', yPercent: 0,  height: sizes[2], width: sizes[2], ease: Power1.easeOut }, qTime * 2)
     // set fourth quarter rotation
-    t1.to(el, qTime, { left: '80%', ease: Power1.easeOut }, qTime * 3)
-    t1.to(el, qTime, { bottom: '10%', height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime * 3)
+    t1.to(el, qTime, { right: '100%', xPercent: 100,  ease: Power1.easeOut }, qTime * 3)
+    t1.to(el, qTime, { bottom: '50%', yPercent: 50,  height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime * 3)
 
     console.log(index * qTime)
     // start position based off index of element
@@ -349,11 +357,12 @@ function orbitElementAfterDelay(el, time, size, index) {
 }
 
 function orbitAllSkillIcons() {
-    const icons = document.querySelectorAll('.skill-icon')
+    const icons = document.querySelectorAll('.skill-icons > .icon')
     // set animation for each element
     // set total animation duration
     const duration = 20
     // track index to pass into animation fx
+    console.log(icons)
     let i = 0
     for (const el of icons) {
         // set animation to start with given duration, max element size, and time delay
@@ -361,7 +370,6 @@ function orbitAllSkillIcons() {
         // increment time delay
         i++
     }
-
 }
 
 // ===============
@@ -369,7 +377,7 @@ function orbitAllSkillIcons() {
 // ===============
 
 function addScrollEvents() {
-    const scrollItems = document.querySelectorAll('#about > .scroll-box > p')
+    const scrollItems = document.querySelectorAll('.scroll-box > p')
     // iterate each item and add event
     let n = 0
     for (const item of scrollItems) {

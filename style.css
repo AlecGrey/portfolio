@@ -34,6 +34,7 @@ html, body {
     height: 2.5rem;
     position: fixed;
     top: 0;
+    z-index: 100;
     display: flex;
     justify-content: stretch;
     align-items: center;
@@ -223,20 +224,27 @@ a:active {
 */
 
 #about {
-    /* NO RULES CURRENTLY */
+    position: absolute;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.scroll-container {
+    padding-left: 1rem;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .scroll-box {
-    height: 45%;
-    position: fixed;
-    bottom: 0;
-    z-index: 1;
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: flex-end;
-    padding-right: 1rem;
-    margin-left: -5rem;
+    margin-bottom: 0;
+    margin-top: auto;
 }
 
 .scroll-bar {
@@ -254,6 +262,8 @@ a:active {
 }
 
 .scroll-box > p {
+    margin: 2rem 0;
+    padding: 0 1rem;
     color: var(--text-secondary);
     transition: color 0.4s ease;
 }
@@ -281,23 +291,27 @@ a:active {
 }
 
 #about > .content {
-    margin-left: 5rem;
-    padding: 0rem;
+    flex: 1;
+    margin-top: 2.5rem;
+    position: relative;
+    overflow: hidden;
 }
 
 #about > .content > div {
-    padding-top: 10vh;
-    width: 100%;
-    height: 90vh;
     visibility: hidden;
+    position: absolute;
 }
 
-#about > .content > .glance-content {
-    padding-top: 30vh;
-    height: 70vh;
+.content > .glance-content {
+    padding: 10rem 2rem 2rem;
+    width: auto;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+}
+
+.content > .education-content {
+    padding: 1%;
+    width: 98%;
 }
 
 .glance-content > p {
@@ -419,13 +433,27 @@ p.footnote > em {
 }
 
 .skills-content {
-    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
 }
 
-div.skill-icon {
+.skill-icons {
+    position: relative;
+    height: 10rem;
+    margin-bottom: 1rem;
+    margin-left: 10rem;
+    margin-right: 15rem;
+}
+
+.skill-icons > .icon {
     width: 5rem;
     height: 5rem;
     background-color: lightblue;
+    color: black;
     position: absolute;
     bottom: 10%;
     right: 45%
