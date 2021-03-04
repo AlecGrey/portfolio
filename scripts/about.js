@@ -126,10 +126,11 @@ function dismountPage() {
 }
 
 function addPageEvents() {
+    // event listeners
     addScrollEvents()
     addEducationExpandEvent()
-    addSkillIconOrbit()
-    console.log('events added to about page')
+    // add animations
+    orbitAllSkillIcons()
 }
 
 // ===============
@@ -316,7 +317,7 @@ function skillsSectionOut() {
     return t1
 }
 
-function orbitElementAfterDelay(el, time, size, delay) {
+function orbitElementAfterDelay(el, time, size, index) {
     const qTime = time / 4
     const sizes = [
         `${size * 0.4}rem`,
@@ -326,21 +327,23 @@ function orbitElementAfterDelay(el, time, size, delay) {
 
     const t1 = new TimelineMax({ paused: true, repeat: -1 })
     // set starting position
-    t1.set(el, { bottom: '15%', left: '95%', height: sizes[1], width: sizes[1] })
+    t1.set(el, { bottom: '10%', left: '80%', height: sizes[1], width: sizes[1] })
     // set first quarter rotation
     t1.to(el, qTime, { left: '50%', ease: Power1.easeIn }, 0)
-    t1.to(el, qTime, { bottom: '25%', height: sizes[0], width: sizes[0], ease: Power1.easeOut }, 0)
+    t1.to(el, qTime, { bottom: '16%', height: sizes[0], width: sizes[0], ease: Power1.easeOut }, 0)
     // set second quarter rotation
-    t1.to(el, qTime, { left: '5%', ease: Power1.easeOut }, qTime)
-    t1.to(el, qTime, { bottom: '15%', height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime)
+    t1.to(el, qTime, { left: '20%', ease: Power1.easeOut }, qTime)
+    t1.to(el, qTime, { bottom: '10%', height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime)
     // set third quarter rotation
     t1.to(el, qTime, { left: '50%', ease: Power1.easeIn }, qTime * 2)
-    t1.to(el, qTime, { bottom: '5%', height: sizes[2], width: sizes[2], ease: Power1.easeOut }, qTime * 2)
+    t1.to(el, qTime, { bottom: '2%', height: sizes[2], width: sizes[2], ease: Power1.easeOut }, qTime * 2)
     // set fourth quarter rotation
-    t1.to(el, qTime, { left: '95%', ease: Power1.easeOut }, qTime * 3)
-    t1.to(el, qTime, { bottom: '15%', height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime * 3)
+    t1.to(el, qTime, { left: '80%', ease: Power1.easeOut }, qTime * 3)
+    t1.to(el, qTime, { bottom: '10%', height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime * 3)
 
-    setTimeout(() => t1.play(), delay)
+    console.log(index * qTime)
+    // start position based off index of element
+    t1.play(index * qTime)
 
     return t1
 }
@@ -350,16 +353,13 @@ function orbitAllSkillIcons() {
     // set animation for each element
     // set total animation duration
     const duration = 20
-    // calculate offset based on total duration, converted to milliseconds
-    // divided by the length of the icon NodeList
-    const offset = (duration * 1000) / icons.length
-    // starting offset is 0
+    // track index to pass into animation fx
     let i = 0
     for (const el of icons) {
         // set animation to start with given duration, max element size, and time delay
         orbitElementAfterDelay(el, duration, 5, i)
         // increment time delay
-        i += offset
+        i++
     }
 
 }
@@ -485,11 +485,4 @@ function addEducationExpandEvent() {
     }
 
     document.querySelector('div.scroll-box').addEventListener('click', collapseEducationOnScroll)
-}
-
-function addSkillIconOrbit() {
-    // TEST THE ORBIT ANIMATIONS
-    const el = document.querySelector('.skills-content')
-    console.log('selected element: ', el)
-    el.addEventListener('click', orbitAllSkillIcons)
 }
