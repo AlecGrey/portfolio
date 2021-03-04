@@ -92,7 +92,6 @@ function addPageContent() {
                             </div>
                         </div>
                         <p class='footnote'><em>* self taught during program</em></p>
-
                     </div>
                 </div>
                 <div class='wwu-education'>
@@ -111,7 +110,12 @@ function addPageContent() {
                     </div>
                 </div>
             </div>
-            <div class='skills-content'></div>
+            <div class='skills-content'>
+                <div class='skill-icon'>1</div>
+                <div class='skill-icon'>2</div>
+                <div class='skill-icon'>3</div>
+                <div class='skill-icon'>4</div>
+            </div>
             <div class='other-side-content'></div>
     `
     main.appendChild(aboutDiv)
@@ -124,6 +128,8 @@ function dismountPage() {
 function addPageEvents() {
     addScrollEvents()
     addEducationExpandEvent()
+    addSkillIconOrbit()
+    console.log('events added to about page')
 }
 
 // ===============
@@ -288,6 +294,76 @@ function expandEducationContent(content) {
     return t1
 }
 
+// == SKILLS == //
+function skillsSectionIn() {
+    const section = document.querySelector('.skills-content')
+    const t1 = new TimelineMax()
+    // reveal section
+    t1.set(section, { visibility: 'visible' })
+    // fade in section
+    t1.fromTo(section, 1.5, {alpha: 0}, {alpha: 1, ease: Power1.easeOut})
+
+    return t1
+
+}
+
+function skillsSectionOut() {
+    const section = document.querySelector('.skills-content')
+    const t1 = new TimelineMax()
+    // hide section
+    t1.fromTo(section, 0.5, {alpha: 1}, {alpha: 0, ease: Power3.easeOut})
+
+    return t1
+}
+
+function orbitElementAfterDelay(el, time, size, delay) {
+    const qTime = time / 4
+    const sizes = [
+        `${size * 0.4}rem`,
+        `${size * 0.7}rem`,
+        `${size}rem`
+    ]
+
+    const t1 = new TimelineMax({ paused: true, repeat: -1 })
+    // set starting position
+    t1.set(el, { bottom: '15%', left: '95%', height: sizes[1], width: sizes[1] })
+    // set first quarter rotation
+    t1.to(el, qTime, { left: '50%', ease: Power1.easeIn }, 0)
+    t1.to(el, qTime, { bottom: '25%', height: sizes[0], width: sizes[0], ease: Power1.easeOut }, 0)
+    // set second quarter rotation
+    t1.to(el, qTime, { left: '5%', ease: Power1.easeOut }, qTime)
+    t1.to(el, qTime, { bottom: '15%', height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime)
+    // set third quarter rotation
+    t1.to(el, qTime, { left: '50%', ease: Power1.easeIn }, qTime * 2)
+    t1.to(el, qTime, { bottom: '5%', height: sizes[2], width: sizes[2], ease: Power1.easeOut }, qTime * 2)
+    // set fourth quarter rotation
+    t1.to(el, qTime, { left: '95%', ease: Power1.easeOut }, qTime * 3)
+    t1.to(el, qTime, { bottom: '15%', height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime * 3)
+
+    setTimeout(() => t1.play(), delay)
+
+    return t1
+}
+
+function orbitAllSkillIcons() {
+    const icons = document.querySelectorAll('.skill-icon')
+    // set animation for each element
+    // set total animation duration
+    const duration = 20
+    // calculate offset based on total duration, converted to milliseconds
+    // divided by the length of the icon NodeList
+    const offset = (duration * 1000) / icons.length
+    // starting offset is 0
+    let i = 0
+    for (const el of icons) {
+        // set animation to start with given duration, max element size, and time delay
+        orbitElementAfterDelay(el, duration, 5, i)
+        // increment time delay
+        i += offset
+    }
+
+}
+
 // ===============
 //   PAGE EVENTS
 // ===============
@@ -331,6 +407,7 @@ function animateSectionIn(section) {
             educationContentIn()
             break
         case 'skills':
+            skillsSectionIn()
             break
         case 'other-side':
             break
@@ -347,6 +424,7 @@ function animateSectionOut(section) {
             educationContentOut()
             break
         case 'skills':
+            skillsSectionOut()
             break
         case 'other-side':
             break
@@ -397,11 +475,21 @@ function addEducationExpandEvent() {
         if (el.tagName !== 'P' || el.classList.contains('education')) return
         // ELSE find the current selected
         const current = document.querySelector('.education-content > .selected')
-        // remove selected from classname
-        current.classList.remove('selected')
-        // use classname to determine which animation to run
-        animations[current.className].reverse(0.5)
+        // if there is a selected box...
+        if (!!current) {
+            // remove selected from classname
+            current.classList.remove('selected')
+            // use classname to determine which animation to run
+            animations[current.className].reverse(0.5)
+        }
     }
 
     document.querySelector('div.scroll-box').addEventListener('click', collapseEducationOnScroll)
+}
+
+function addSkillIconOrbit() {
+    // TEST THE ORBIT ANIMATIONS
+    const el = document.querySelector('.skills-content')
+    console.log('selected element: ', el)
+    el.addEventListener('click', orbitAllSkillIcons)
 }

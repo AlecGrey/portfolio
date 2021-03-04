@@ -417,3 +417,16 @@ p.footnote {
 p.footnote > em {
     color: var(--text-secondary)
 }
+
+.skills-content {
+    position: relative;
+}
+
+div.skill-icon {
+    width: 5rem;
+    height: 5rem;
+    background-color: lightblue;
+    position: absolute;
+    bottom: 10%;
+    right: 45%
+}
