@@ -149,10 +149,6 @@ span:hover {
     color: var(--text-accent-ternary);
     transition: color 0.4s ease;
 }
-/* hide all content before animations */
-#welcome, #about, #projects, #contact {
-    /* display: none */
-}
 
 p > em {
     color: var(--text-secondary);
