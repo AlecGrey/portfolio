@@ -114,6 +114,7 @@ function addPageContent() {
                 </div>
             </div>
             <div class='skills-content'>
+                <div class='skill-details'></div>
                 <div class='skill-icons'>
                     <i class="fas fa-laptop-code"></i>
                     <i class="fas fa-database"></i>
@@ -348,13 +349,13 @@ function orbitElementAfterDelay(el, time, index) {
     t1.set(el, { right: '100%', xPercent: 100 , bottom: '50%', yPercent: 50, z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1] })
     // set first quarter rotation
     t1.to(el, qTime, { right: '50%', xPercent: 50, ease: Power1.easeIn }, 0)
-    t1.to(el, qTime, { bottom: '100%', yPercent: 100, z: 0, color: color[0], backgroundColor: bgColor[0], ease: Power1.easeOut }, 0)
+    t1.to(el, qTime, { bottom: '100%', yPercent: 100, z: 0, zIndex: 4, color: color[0], backgroundColor: bgColor[0], ease: Power1.easeOut }, 0)
     // set second quarter rotation
     t1.to(el, qTime, { right: '0%', xPercent: 0, ease: Power1.easeOut }, qTime)
-    t1.to(el, qTime, { bottom: '50%', yPercent: 50, z: 50, zIndex: 6, color: color[1], backgroundColor: bgColor[1],  ease: Power1.easeIn }, qTime)
+    t1.to(el, qTime, { bottom: '50%', yPercent: 50, z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1],  ease: Power1.easeIn }, qTime)
     // set third quarter rotation
     t1.to(el, qTime, { right: '50%', xPercent: 50, ease: Power1.easeIn }, qTime * 2)
-    t1.to(el, qTime, { bottom: '0%', yPercent: 0,  z: 100, color: color[2], backgroundColor: bgColor[2], ease: Power1.easeOut }, qTime * 2)
+    t1.to(el, qTime, { bottom: '0%', yPercent: 0,  z: 100, zIndex: 6, color: color[2], backgroundColor: bgColor[2], ease: Power1.easeOut }, qTime * 2)
     // set fourth quarter rotation
     t1.to(el, qTime, { right: '100%', xPercent: 100,  ease: Power1.easeOut }, qTime * 3)
     t1.to(el, qTime, { bottom: '50%', yPercent: 50,  z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1], ease: Power1.easeIn }, qTime * 3)
@@ -498,7 +499,7 @@ function addEducationExpandEvent() {
             // remove selected from classname
             current.classList.remove('selected')
             // use classname to determine which animation to run
-            animations[current.className].reverse(0.5)
+            setTimeout(() => animations[current.className].reverse(0.5), 800)
         }
     }
 

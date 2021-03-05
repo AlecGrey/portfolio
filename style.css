@@ -460,3 +460,7 @@ p.footnote > em {
     background-color: rgb(80,80,80) !important;
     transition: background-color 0.2s ease-out, color 0.2s ease-out;
 }
+
+.skill-details {
+    flex: 1;
+}
