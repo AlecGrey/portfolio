@@ -115,10 +115,10 @@ function addPageContent() {
             </div>
             <div class='skills-content'>
                 <div class='skill-icons'>
-                    <div class='icon'>1</div>
-                    <div class='icon'>2</div>
-                    <div class='icon'>3</div>
-                    <div class='icon'>4</div>
+                    <i class="fas fa-laptop-code"></i>
+                    <i class="fas fa-database"></i>
+                    <i class="fas fa-code"></i>
+                    <i class="far fa-laugh-wink"></i>
                 </div>
             </div>
             <div class='other-side-content'></div>
@@ -305,11 +305,13 @@ function expandEducationContent(content) {
 // == SKILLS == //
 function skillsSectionIn() {
     const section = document.querySelector('.skills-content')
+    const iconContainer = document.querySelector('.skill-icons')
     const t1 = new TimelineMax()
     // reveal section
     t1.set(section, { visibility: 'visible' })
     // fade in section
-    t1.fromTo(section, 1.5, {alpha: 0}, {alpha: 1, ease: Power1.easeOut})
+    t1.fromTo(section, 1.5, { alpha: 0 }, { alpha: 1, ease: Power1.easeOut })
+    t1.fromTo(iconContainer, 1, { yPercent: 30 }, { yPercent: 0, ease: Power3.easeOut}, 0)
 
     return t1
 
@@ -317,37 +319,45 @@ function skillsSectionIn() {
 
 function skillsSectionOut() {
     const section = document.querySelector('.skills-content')
+    const iconContainer = document.querySelector('.skill-icons')
     const t1 = new TimelineMax()
+    // animate out section
+    t1.fromTo(section, 0.5, { alpha: 1 }, { alpha: 0, ease: Power3.easeOut })
+    t1.fromTo(iconContainer, 0.5, { yPercent: 0 }, { yPercent: 30, ease: Power3.easeOut }, 0)
     // hide section
-    t1.fromTo(section, 0.5, {alpha: 1}, {alpha: 0, ease: Power3.easeOut})
     t1.set(section, { visibility: 'hidden' })
 
     return t1
 }
 
-function orbitElementAfterDelay(el, time, size, index) {
+function orbitElementAfterDelay(el, time, index) {
     const qTime = time / 4
-    const sizes = [
-        `${size * 0.4}rem`,
-        `${size * 0.7}rem`,
-        `${size}rem`
+    const color = [
+        'rgb(200, 200, 200)',
+        'rgb(220, 220, 220)',
+        'rgb(240, 240, 240)'
+    ]
+    const bgColor = [
+        'rgb(30, 30, 30)',
+        'rgb(40, 40, 40)',
+        'rgb(50, 50, 50)'
     ]
 
     const t1 = new TimelineMax({ paused: true, repeat: -1 })
     // set starting position
-    t1.set(el, { right: '100%', xPercent: 100 , bottom: '50%', yPercent: 50, height: sizes[1], width: sizes[1]})
+    t1.set(el, { right: '100%', xPercent: 100 , bottom: '50%', yPercent: 50, z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1] })
     // set first quarter rotation
     t1.to(el, qTime, { right: '50%', xPercent: 50, ease: Power1.easeIn }, 0)
-    t1.to(el, qTime, { bottom: '100%', yPercent: 100, height: sizes[0], width: sizes[0], ease: Power1.easeOut }, 0)
+    t1.to(el, qTime, { bottom: '100%', yPercent: 100, z: 0, color: color[0], backgroundColor: bgColor[0], ease: Power1.easeOut }, 0)
     // set second quarter rotation
     t1.to(el, qTime, { right: '0%', xPercent: 0, ease: Power1.easeOut }, qTime)
-    t1.to(el, qTime, { bottom: '50%', yPercent: 50, height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime)
+    t1.to(el, qTime, { bottom: '50%', yPercent: 50, z: 50, zIndex: 6, color: color[1], backgroundColor: bgColor[1],  ease: Power1.easeIn }, qTime)
     // set third quarter rotation
     t1.to(el, qTime, { right: '50%', xPercent: 50, ease: Power1.easeIn }, qTime * 2)
-    t1.to(el, qTime, { bottom: '0%', yPercent: 0,  height: sizes[2], width: sizes[2], ease: Power1.easeOut }, qTime * 2)
+    t1.to(el, qTime, { bottom: '0%', yPercent: 0,  z: 100, color: color[2], backgroundColor: bgColor[2], ease: Power1.easeOut }, qTime * 2)
     // set fourth quarter rotation
     t1.to(el, qTime, { right: '100%', xPercent: 100,  ease: Power1.easeOut }, qTime * 3)
-    t1.to(el, qTime, { bottom: '50%', yPercent: 50,  height: sizes[1], width: sizes[1], ease: Power1.easeIn }, qTime * 3)
+    t1.to(el, qTime, { bottom: '50%', yPercent: 50,  z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1], ease: Power1.easeIn }, qTime * 3)
 
     console.log(index * qTime)
     // start position based off index of element
@@ -357,16 +367,16 @@ function orbitElementAfterDelay(el, time, size, index) {
 }
 
 function orbitAllSkillIcons() {
-    const icons = document.querySelectorAll('.skill-icons > .icon')
+    const icons = document.querySelectorAll('.skill-icons > i')
     // set animation for each element
     // set total animation duration
-    const duration = 20
+    const duration = 25
     // track index to pass into animation fx
     console.log(icons)
     let i = 0
     for (const el of icons) {
         // set animation to start with given duration, max element size, and time delay
-        orbitElementAfterDelay(el, duration, 5, i)
+        orbitElementAfterDelay(el, duration, i)
         // increment time delay
         i++
     }

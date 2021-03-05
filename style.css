@@ -443,18 +443,24 @@ p.footnote > em {
 
 .skill-icons {
     position: relative;
+    perspective: 100rem;
     height: 10rem;
     margin-bottom: 1rem;
-    margin-left: 10rem;
-    margin-right: 15rem;
+    margin-left: 12rem;
+    margin-right: 18rem;
 }
 
-.skill-icons > .icon {
-    width: 5rem;
-    height: 5rem;
-    background-color: lightblue;
-    color: black;
+.skill-icons > i {
+    font-size: 5rem;
+    transition: background-color 0.5s ease-out, color 0.5s ease-out;
     position: absolute;
-    bottom: 10%;
-    right: 45%
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.skill-icons > i:hover {
+    cursor: pointer;
+    color: white !important;
+    background-color: rgb(80,80,80) !important;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
 }
