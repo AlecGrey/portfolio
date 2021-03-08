@@ -28,102 +28,7 @@ function addPageContent() {
     const aboutDiv = document.createElement('div')
     aboutDiv.id = 'about'
     // add all inner content to div
-    aboutDiv.innerHTML = `
-        <div class='scroll-container'>
-            <div class='scroll-box'>
-                <p class='glance selected'>at a glance</p>
-                <p class='education'>education</p>
-                <p class='skills'>skills</p>
-                <p class='other-side'>the other side</p>
-                <div class='scroll-bar'></div>
-                <div class='scroll-bar inner'></div>
-            </div>
-        </div>
-        
-        <div class='content'>
-            <div class='glance-content'>
-                <h1>I believe well rounded <span>content</span> comes from well rounded <span>people</span>.</h1>
-                <p>As a <span>developer</span>, I want my content to be professional, but fun.  Engaging to the user, yet not demanding of them.  I am constantly searching for better ways to solve problems, and to add new tools to my belt.</p>
-                <p>As a <span>human</span>, I am a dedicated worker, an early communicator, and an eager learner.  While working on a team, I always strive for humility; to find ways to maximize my own potential, and lift the potential of those around me.</p>
-            </div>
-            <div class='education-content'>
-                <div class='flatiron-education'>
-                    <div class='education-heading'>
-                        <img src='./assets/flatiron-logo.jpg' alt='flatiron school logo'>
-                        <h2><span>Flatiron School</span> - Software Engineering Immersive</h2>
-                        <h3>Oct 2020 - Jan 2021</h3>
-                    </div>
-                    <div class='education-inner-content'>
-                        <div class='summary'>
-                            <h3>Job ready in 15-weeks.</h3>
-                            <p>Full-stack software engineering bootcamp.  We learned how to build back-to-front, using the fundamentals of MVC to create a full-stack Ruby on Rails application by <em>week 6</em>.  We built on top of this with Javascript frontend development, and integrating React with Redux for fast and dynamic user interfaces.</p>
-                            <p>I learned how to build professional web applications, with considerations on security & authorization, user experience, rapid API queries, and time/memory optimization.</p>
-                        </div>
-                        <div class='details'>
-                            <div>
-                                <h4>Languages</h4>
-                                <ul>
-                                    <li>Ruby</li>
-                                    <li>Javascript</li>
-                                    <li>HTML, CSS</li>
-                                    <li>SQL</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4>Technologies & Frameworks</h4>
-                                <ul>
-                                    <li>Rails</li>
-                                    <li>React</li>
-                                    <li>Redux</li>
-                                    <li>PostgreSQL*</li>
-                                    <li>Bootstrap*</li>
-                                    <li>Websockets*</li>
-                                    <li>Heroku & Firebase*</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4>Skills</h4>
-                                <ul>
-                                    <li>OO Programming</li>
-                                    <li>RESTful API</li>
-                                    <li>Auth & web tokens</li>
-                                    <li>Data structures</li>
-                                    <li>Git/version control</li>
-                                    <li>Web Scraping*</li>
-                                    <li>Deployment*</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p class='footnote'><em>* self taught during program</em></p>
-                    </div>
-                </div>
-                <div class='wwu-education'>
-                    <div class='education-heading'>
-                        <img src='./assets/wwu-logo-2.svg' alt='western washington university logo'>
-                        <h2><span>Western Washington University</span> - M.S. Exercise Science</h2>
-                        <h3>Jan 2016 - Dec 2018</h3>
-                    </div>
-                    <div class='education-inner-content'>
-                        <div class='summary'>
-                            <h3>Data first.</h3>
-                            <p>Advanced research degree covering the most recent topics and ideologies of human performance, injury prevention, and physical health.  Partook in several research projects in WWU's state-of-the-art biomechanics lab, including a cumulative solo research project.</p>
-                            <p>Performed data capture using an integrated Vicon capture system, with a 3D capture, force measurements, and separate tools for metabolic testing.  Learned statistical analysis using SPSS and excel.</p>
-                            <h4>You can access my Master's Thesis <a href='https://cedar.wwu.edu/cgi/viewcontent.cgi?article=1803&context=wwuet' target="_blank">here</a></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class='skills-content'>
-                <div class='skill-details'></div>
-                <div class='skill-icons'>
-                    <i class="fas fa-laptop-code"></i>
-                    <i class="fas fa-database"></i>
-                    <i class="fas fa-code"></i>
-                    <i class="far fa-laugh-wink"></i>
-                </div>
-            </div>
-            <div class='other-side-content'></div>
-    `
+    aboutDiv.innerHTML = mainHTML
     main.appendChild(aboutDiv)
 }
 
@@ -135,8 +40,38 @@ function addPageEvents() {
     // event listeners
     addScrollEvents()
     addEducationExpandEvent()
+    addSkillDetailEvents()
     // add animations
     orbitAllSkillIcons()
+}
+
+function addSkillDetails(section) {
+    // grab container to inject
+    const container = document.querySelector('div.skill-details')
+    switch (section) {
+        case 'backend':
+            document.querySelector('.fa-database').classList.add('selected')
+            container.innerHTML = backendSkillHTML
+            break
+        case 'frontend':
+            document.querySelector('.fa-laptop-code').classList.add('selected')
+            container.innerHTML = frontendSkillHTML
+            break
+        case 'general-coding':
+            document.querySelector('.fa-code').classList.add('selected')
+            container.innerHTML = generalCodingSkillHTML
+            break
+        case 'non-coding':
+            document.querySelector('.fa-laugh-wink').classList.add('selected')
+            container.innerHTML = nonCodingSkillHTML
+            break
+        default:
+            break
+    }
+}
+
+function removeSelectedFromSkillDetail() {
+    document.querySelector('.skill-icons > i.selected').classList.remove('selected')
 }
 
 // ===============
@@ -383,6 +318,36 @@ function orbitAllSkillIcons() {
     }
 }
 
+function skillDetailIn() {
+    // grab content
+    const content = document.querySelector('.skill-details')
+    // set new timeline
+    const t1 = new TimelineMax()
+    // alpha/fade in with rise
+    t1.fromTo(
+        content, 0.3,
+        { alpha: 0, yPercent: 3 },
+        { alpha: 1, yPercent: 0 }
+    )
+    // return timeline
+    return t1
+}
+
+function skillDetailOut() {
+    // grab content
+    const content = document.querySelector('.skill-details')
+    // set new timeline
+    const t1 = new TimelineMax()
+    // alpha/fade in with rise
+    t1.fromTo(
+        content, 0.3,
+        { alpha: 1, yPercent: 0 },
+        { alpha: 0, yPercent: 3 }
+    )
+    // return timeline
+    return t1
+}
+
 // ===============
 //   PAGE EVENTS
 // ===============
@@ -505,3 +470,243 @@ function addEducationExpandEvent() {
 
     document.querySelector('div.scroll-box').addEventListener('click', collapseEducationOnScroll)
 }
+
+function addSkillDetailEvents() {
+    const icons = document.querySelectorAll('.skill-icons > i')
+    // set each section to switch to
+    const sections = ['frontend', 'backend', 'general-coding', 'non-coding']
+    let i = 0
+    for (const icon of icons) {
+        let section = sections[i]
+        icon.addEventListener('click', e => changeToSkillSection(e, section))
+        i++
+    }
+}
+
+function changeToSkillSection(e, section) {
+    // short circuit if currently selected!
+    console.log(e.target.className)
+    if (e.target.classList.contains('selected')) return
+    // decide whether to immediately animate in, or wait until previous is animated out:
+    if (document.querySelector('.skill-icons > i.selected') === null) {
+        // inject HTML to page
+        addSkillDetails(section)
+        // animate section in
+        skillDetailIn()
+    } else {
+        // animate out previous
+        skillDetailOut()
+        removeSelectedFromSkillDetail()
+        // animate in the new section
+        setTimeout(() => {
+            addSkillDetails(section)
+            skillDetailIn()
+        }, 300)
+    }
+}
+
+// ====================================
+//        PAGE HTML INJECTIONS
+// ====================================
+const mainHTML = `
+<div class='scroll-container'>
+    <div class='scroll-box'>
+        <p class='glance selected'>at a glance</p>
+        <p class='education'>education</p>
+        <p class='skills'>skills</p>
+        <p class='other-side'>the other side</p>
+        <div class='scroll-bar'></div>
+        <div class='scroll-bar inner'></div>
+    </div>
+</div>
+
+<div class='content'>
+    <div class='glance-content'>
+        <h1>I believe well rounded <span>content</span> comes from well rounded <span>people</span>.</h1>
+        <p>As a <span>developer</span>, I want my content to be professional, but fun.  Engaging to the user, yet not demanding of them.  I am constantly searching for better ways to solve problems, and to add new tools to my belt.</p>
+        <p>As a <span>human</span>, I am a dedicated worker, an early communicator, and an eager learner.  While working on a team, I always strive for humility; to find ways to maximize my own potential, and lift the potential of those around me.</p>
+    </div>
+    <div class='education-content'>
+        <div class='flatiron-education'>
+            <div class='education-heading'>
+                <img src='./assets/flatiron-logo.jpg' alt='flatiron school logo'>
+                <h2><span>Flatiron School</span> - Software Engineering Immersive</h2>
+                <h3>Oct 2020 - Jan 2021</h3>
+            </div>
+            <div class='education-inner-content'>
+                <div class='summary'>
+                    <h3>Job ready in 15-weeks.</h3>
+                    <p>Full-stack software engineering bootcamp.  We learned how to build back-to-front, using the fundamentals of MVC to create a full-stack Ruby on Rails application by <em>week 6</em>.  We built on top of this with Javascript frontend development, and integrating React with Redux for fast and dynamic user interfaces.</p>
+                    <p>I learned how to build professional web applications, with considerations on security & authorization, user experience, rapid API queries, and time/memory optimization.</p>
+                </div>
+                <div class='details'>
+                    <div>
+                        <h4>Languages</h4>
+                        <ul>
+                            <li>Ruby</li>
+                            <li>Javascript</li>
+                            <li>HTML, CSS</li>
+                            <li>SQL</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Technologies & Frameworks</h4>
+                        <ul>
+                            <li>Rails</li>
+                            <li>React</li>
+                            <li>Redux</li>
+                            <li>PostgreSQL*</li>
+                            <li>Bootstrap*</li>
+                            <li>Websockets*</li>
+                            <li>Heroku & Firebase*</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Skills</h4>
+                        <ul>
+                            <li>OO Programming</li>
+                            <li>RESTful API</li>
+                            <li>Auth & web tokens</li>
+                            <li>Data structures</li>
+                            <li>Git/version control</li>
+                            <li>Web Scraping*</li>
+                            <li>Deployment*</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class='footnote'><em>* self taught during program</em></p>
+            </div>
+        </div>
+        <div class='wwu-education'>
+            <div class='education-heading'>
+                <img src='./assets/wwu-logo-2.svg' alt='western washington university logo'>
+                <h2><span>Western Washington University</span> - M.S. Exercise Science</h2>
+                <h3>Jan 2016 - Dec 2018</h3>
+            </div>
+            <div class='education-inner-content'>
+                <div class='summary'>
+                    <h3>Data first.</h3>
+                    <p>Advanced research degree covering the most recent topics and ideologies of human performance, injury prevention, and physical health.  Partook in several research projects in WWU's state-of-the-art biomechanics lab, including a cumulative solo research project.</p>
+                    <p>Performed data capture using an integrated Vicon capture system, with a 3D capture, force measurements, and separate tools for metabolic testing.  Learned statistical analysis using SPSS and excel.</p>
+                    <h4>You can access my Master's Thesis <a href='https://cedar.wwu.edu/cgi/viewcontent.cgi?article=1803&context=wwuet' target="_blank">here</a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='skills-content'>
+        <div class='skill-details'></div>
+        <div class='skill-icons'>
+            <i class="fas fa-laptop-code"></i>
+            <i class="fas fa-database"></i>
+            <i class="fas fa-code"></i>
+            <i class="far fa-laugh-wink"></i>
+        </div>
+    </div>
+    <div class='other-side-content'></div>
+`
+
+const backendSkillHTML = `
+<h1>Backend Development</h1>
+<div>
+    <i class="fas fa-gem"></i>
+    <div class='skill-inner-content'>
+        <h2>Ruby on Rails</h2>
+        <p>
+            Develop sophisticated backend APIs using <span>REST</span>ful conventions and data validations.  Relational database modeling, rapid API rquests via <span>JSON-API serializer</span>. Built and deployed APIs with <span>PostgreSQL</span> databases.  Websockets protocol via <span>ActionCable</span> gem.
+        </p>
+    </div>
+</div>
+<div>
+    <i class="fab fa-python"></i>
+    <div class='skill-inner-content'>
+        <h2>Python & Flask</h2>
+        <p>
+            Develop rapid, light-weight APIs using <span>Flask micro-framework</span>.  Built database models and validations via <span>SQLAlchemy</span>.  Data serialization via <span>Marshmallow</span>.  Migrate databases and control versions using <span>Alembic</span>.
+        </p>
+    </div>
+</div>
+<div>
+    <i class="fas fa-user-lock"></i>
+    <div class='skill-inner-content'>
+        <h2>Security, Authentication and Authorization</h2>
+        <p>
+            Password encryption and validation via <span>BCrypt</span> in Rails.  Authorization using <span>JSON Web Tokens</span>.  Request handling via <span>CORS</span>.
+        </p>
+    </div>
+</div>
+`
+
+const frontendSkillHTML = `
+<h1>Frontend Development</h1>
+<div>
+    <i class="fab fa-react"></i>
+    <div class='skill-inner-content'>
+        <h2>React & Redux</h2>
+        <p>Build rapid, interactive web applications. Integrate multiple endpoints via <span>react-router</span>.  Incorporate complex state-management with <span>Redux</span> store.  Build functional components utilizing hooks for local state management and component timelines. Maintain sessions via cookies and localStorage.  Create real-time user experiences with <span>websockets</span>.</p>
+    </div>
+</div>
+<div>
+    <i class="fab fa-bootstrap"></i>
+    <div class='skill-inner-content'>
+        <h2>Bootstrap</h2>
+        <p>Build modern, flexible user-interfaces.  Incorporate <span>Bootstrap 4</span> class designations for flexbox and grid layouts, as well as text and HTML element styling.  Integrate <span>React-Bootstrap</span> components in client-side applications.</p>
+    </div>
+</div>
+<div>
+    <i class="fas fa-desktop"></i>
+    <div class='skill-inner-content'>
+        <h2>Static Content</h2>
+        <p>Create highly functional static webpages using <span>HTML</span> and <span>CSS</span>.  <span>Embedded Ruby (.erb)</span> view files in Ruby on Rails, and <span>Jinja2</span> for Python/Flask applications.</p>
+    </div>
+</div>
+`
+
+const generalCodingSkillHTML = `
+<h1>General Engineering</h1>
+<div>
+    <i class="fas fa-cube"></i>
+    <div class='skill-inner-content'>
+        <h2>Object Oriented Programming</h2>
+        <p>Build applications using <span>DRY</span> code using object-oriented design.  Implemented fundamentals in multiple <span>Ruby</span> and <span>Javascript</span> applications.</p>
+    </div>
+</div>
+<div>
+    <i class="fas fa-code-branch"></i>
+    <div class='skill-inner-content'>
+        <h2>Version Control</h2>
+        <p>Safely manage code updates and features using .git version control via <span>GitHub</span>.  Collaborate with multiple team members on larger projects, coordinating feature changes and merging conflicting changes.  Access my github <a href='https://github.com/AlecGrey'>here.</a></p>
+    </div>
+</div>
+<div>
+    <i class="fas fa-file-code"></i>
+    <div class='skill-inner-content'>
+        <h2>API Queries & Web Scraping</h2>
+        <p>Incorporate data from 3rd-party APIs into applications.  In the absence of a serviceable API, successfully implemented <span>chromedriver</span> and <span>watir</span> to develop web scraping script to attain pertinent site data.</p>
+    </div>
+</div>
+`
+
+const nonCodingSkillHTML = `
+<h1>Non-technical</h1>
+<div>
+    <i class="fas fa-users"></i>
+    <div class='skill-inner-content'>
+        <h2>Teamwork</h2>
+        <p>Collaborated on multiple team projects.  Maintain open lines of communication, coordinate workflow with team members, and manage code repositories to complete projects efficently.</p>
+    </div>
+</div>
+<div>
+    <i class="fas fa-handshake"></i>
+    <div class='skill-inner-content'>
+        <h2>Communications</h2>
+        <p>Extensive experience with company-client communications, and being the face of an organization.  Maintain professional and warm communications with clients, prioritizing their needs and handling conflict amicably.</p>
+    </div>
+</div>
+<div>
+    <i class="fas fa-lightbulb"></i>
+    <div class='skill-inner-content'>
+        <h2>Problem Solving</h2>
+        <p>I am an adept and tenacious <span>problem solver</span>.  Can quickly pick up new technologies and find best uses in applications.  I have a strong <span>work ethic</span>, and am willing to put in the extra effort to deliver on big projects.</p>
+    </div>
+</div>
+`
