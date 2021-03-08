@@ -183,7 +183,7 @@ function glanceSectionOut() {
 }
 
 //  == EDUCATION == //
-function educationContentIn() {
+function educationSectionIn() {
     const section = document.querySelector('.education-content')
     // set timeline
     const t1 = new TimelineMax()
@@ -203,7 +203,7 @@ function educationContentIn() {
     return t1
 }
 
-function educationContentOut() {
+function educationSectionOut() {
     const section = document.querySelector('.education-content')
     // set timeline
     const t1 = new TimelineMax
@@ -348,6 +348,29 @@ function skillDetailOut() {
     return t1
 }
 
+// == OTHER-SIDE == //
+function otherSideSectionIn() {
+    // grab section
+    const section = document.querySelector('.other-side-content')
+    // start new timeline
+    const t1 = new TimelineMax()
+    // make section visible
+    t1.set(section, { visibility: 'visible' })
+    // return timeline
+    return t1
+}
+
+function otherSideSectionOut() {
+    // grab section
+    const section = document.querySelector('.other-side-content')
+    // start new timeline
+    const t1 = new TimelineMax()
+    // make section visible
+    t1.set(section, { visibility: 'hidden' })
+    // return timeline
+    return t1
+}
+
 // ===============
 //   PAGE EVENTS
 // ===============
@@ -388,12 +411,13 @@ function animateSectionIn(section) {
             glanceSectionIn()
             break
         case 'education':
-            educationContentIn()
+            educationSectionIn()
             break
         case 'skills':
             skillsSectionIn()
             break
         case 'other-side':
+            otherSideSectionIn()
             break
     }
 }
@@ -405,12 +429,13 @@ function animateSectionOut(section) {
             glanceSectionOut()
             break
         case 'education':
-            educationContentOut()
+            educationSectionOut()
             break
         case 'skills':
             skillsSectionOut()
             break
         case 'other-side':
+            otherSideSectionOut()
             break
     }
 }
@@ -602,7 +627,9 @@ const mainHTML = `
             <i class="far fa-laugh-wink"></i>
         </div>
     </div>
-    <div class='other-side-content'></div>
+    <div class='other-side-content'>
+        <div id='other-side-img'></div>
+    </div>
 `
 
 const backendSkillHTML = `
@@ -662,7 +689,7 @@ const frontendSkillHTML = `
 `
 
 const generalCodingSkillHTML = `
-<h1>General Engineering</h1>
+<h1>General Development</h1>
 <div>
     <i class="fas fa-cube"></i>
     <div class='skill-inner-content'>
@@ -687,7 +714,7 @@ const generalCodingSkillHTML = `
 `
 
 const nonCodingSkillHTML = `
-<h1>Non-technical</h1>
+<h1>Non Technical</h1>
 <div>
     <i class="fas fa-users"></i>
     <div class='skill-inner-content'>
