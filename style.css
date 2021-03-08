@@ -526,9 +526,14 @@ p.footnote > em {
 
 #other-side-img {
     position: fixed;
+    bottom: 0;
+    left: 0;
     height: 100vh;
-    width: 50vw;
-    background-image: url(./assets/other-side.jpg);
+    width: 80vw;
+    z-index: -2;
+    background-image: 
+        linear-gradient(90deg, rgba(25,25,25,0) 0%, rgba(25,25,25,0.85) 60%, rgba(25,25,25,1) 100%), 
+        url(./assets/other-side.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
