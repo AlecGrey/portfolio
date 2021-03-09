@@ -352,10 +352,20 @@ function skillDetailOut() {
 function otherSideSectionIn() {
     // grab section
     const section = document.querySelector('.other-side-content')
+    const img = document.getElementById('other-side-img')
+    const pElements = document.querySelectorAll('.other-side-content > p')
     // start new timeline
     const t1 = new TimelineMax()
     // make section visible
     t1.set(section, { visibility: 'visible' })
+    // translate in background image
+    t1.fromTo(img, 1, { alpha: 0, xPercent: -1 }, { alpha: 1, xPercent: 0 }, 0)
+    // fade in page content with 0.5s offset
+    let i = 0
+    for (const el of pElements) {
+        t1.fromTo(el, 0.8, { alpha: 0, xPercent: 10 }, { alpha: 1, xPercent: 0 }, i * 0.2)
+        i++
+    }
     // return timeline
     return t1
 }
@@ -363,9 +373,17 @@ function otherSideSectionIn() {
 function otherSideSectionOut() {
     // grab section
     const section = document.querySelector('.other-side-content')
+    const img = document.getElementById('other-side-img')
+    const pElements = document.querySelectorAll('.other-side-content > p')
     // start new timeline
     const t1 = new TimelineMax()
-    // make section visible
+    // translate image
+    t1.to(img, 0.5, { xPercent: -1, alpha: 0 }, 0)
+    // translate out each p element
+    for (const el of pElements) {
+        t1.to (el, 0.5, { xPercent: 10, alpha: 0 }, 0)
+    }
+    // end by hiding section
     t1.set(section, { visibility: 'hidden' })
     // return timeline
     return t1
@@ -550,6 +568,7 @@ const mainHTML = `
         <h1>I believe well rounded <span>content</span> comes from well rounded <span>people</span>.</h1>
         <p>As a <span>developer</span>, I want my content to be professional, but fun.  Engaging to the user, yet not demanding of them.  I am constantly searching for better ways to solve problems, and to add new tools to my belt.</p>
         <p>As a <span>human</span>, I am a dedicated worker, an early communicator, and an eager learner.  While working on a team, I always strive for humility; to find ways to maximize my own potential, and lift the potential of those around me.</p>
+        <p>Wanna cut to the chase?  Download my resume <a id='resume-link' href='./assets/20210215-Alexander-Grey.pdf' target='_blank'>here</a>.</p>
     </div>
     <div class='education-content'>
         <div class='flatiron-education'>
@@ -629,6 +648,8 @@ const mainHTML = `
     </div>
     <div class='other-side-content'>
         <div id='other-side-img'></div>
+        <p>I'm <span>28 years young</span>, and a home-grown member of the <span>Pacific Northwest</span>.  Any good weekend you can catch my wife and I out <span>exploring the parks</span>, or up in Bellingham visiting our old Alma Mater.  I'm a competitive <span>Ultimate Frisbee</span> player, a decent <span>cook</span>, and a tough (but fair) <span>dungeon master</span>.</p>
+        <p>Same with work as I am in my life: I love to try new things, and I like to get really good at them too.</p>
     </div>
 `
 

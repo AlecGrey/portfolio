@@ -1,5 +1,6 @@
 import welcomeConstructor from './welcome.js';
 import aboutConstructor from './about.js';
+import projectsConstructor from './projects.js';
 
 export default function constructMainPageObject() {
     // CONSTRUCTS PAGE WITH SUBPAGES AND EVENT LISTENERS
@@ -8,6 +9,7 @@ export default function constructMainPageObject() {
     // SUB-PAGE OBJECTS
     const welcome = welcomeConstructor()
     const about = aboutConstructor()
+    const projects = projectsConstructor()
     // ANIMATION HOLDER
     page.animations = {
         'welcomeLoad': null,
@@ -52,12 +54,14 @@ export default function constructMainPageObject() {
                 about.animations.hide() // fx ends with a call to dismount DOM element
                 break
 
-                case 'projects-link':
-                    // insert functionality
+            case 'projects-link':
+                // animate and dismount
+                page.animations.projectsLoad.pause()
+                projects.animations.hide()
                 break
 
-                case 'contact-link':
-                    // insert functionality
+            case 'contact-link':
+                // insert functionality
                 break
 
             default:
@@ -87,7 +91,10 @@ export default function constructMainPageObject() {
                 break
 
             case 'projects-link':
-                // insert functionality
+                // mount page and animate in
+                projects.construct()
+                page.animations.projectsLoad = projects.animations.load()
+                projectsEventListeners()
                 break
 
             case 'contact-link':
@@ -101,7 +108,7 @@ export default function constructMainPageObject() {
     }
 
     // =================================
-    //   ADDING EVENT LISTENERS
+    //      ADDING EVENT LISTENERS
     // =================================
 
     // NAVBAR EVENTS
@@ -124,6 +131,10 @@ export default function constructMainPageObject() {
 
     const aboutEventListeners = () => {
         about.addPageEvents()
+    }
+
+    const projectsEventListeners = () => {
+        projects.addPageEvents()
     }
 
     return page

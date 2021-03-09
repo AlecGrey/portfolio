@@ -118,6 +118,42 @@ li > .circle {
 
 /* 
 =========================================
+                FOOTER
+=========================================
+*/
+
+#footer {
+    z-index: 1;
+    position: fixed;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#footer > a > i {
+    margin-top: 0.5rem;
+    font-size: 3rem;
+    color: var(--text-secondary);
+    transition: color 0.5s ease, opacity 0.5s ease;
+    opacity: 0.5;
+}
+
+#footer > a > i:hover {
+    cursor: pointer;
+    color: var(--text-primary);
+    opacity: 0.8;
+    transition: color 0.5s ease, opacity 0.5s ease;
+}
+
+#footer > a > i:active {
+    color: white;
+    opacity: 1;
+    transition: color 0.5s ease, opacity 0.5s ease;
+}
+
+/* 
+=========================================
                 MAIN
 =========================================
 */
@@ -314,6 +350,15 @@ a:active {
     font-size: 1.2rem;
 }
 
+#resume-link {
+    text-decoration: underline;
+}
+
+.glance-content > p:hover > span {
+    color: var(--text-accent-ternary);
+    transition: color 0.5s ease;
+}
+
 .glance-content > h1 + p {
     margin-bottom: 0;
 }
@@ -349,7 +394,7 @@ a:active {
     transition: color 0.5s ease;
 }
 
-.education-heading > h2:hover {
+.education-heading:hover {
     cursor: pointer
 }
 
@@ -505,7 +550,7 @@ p.footnote > em {
 }
 
 .skill-inner-content > p > span {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     transition: color 0.5 ease;
 }
 
@@ -524,16 +569,192 @@ p.footnote > em {
     transition: color 0.5 ease;
 }
 
+.other-side-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-end;
+    padding-top: 10rem;
+}
+
 #other-side-img {
     position: fixed;
     bottom: 0;
     left: 0;
     height: 100vh;
-    width: 80vw;
+    width: 70vw;
     z-index: -2;
     background-image: 
-        linear-gradient(90deg, rgba(25,25,25,0) 0%, rgba(25,25,25,0.85) 60%, rgba(25,25,25,1) 100%), 
+        linear-gradient(90deg, rgba(25,25,25,0) 0%, rgba(25,25,25,0.70) 70%, rgba(25,25,25,1) 100%), 
         url(./assets/other-side.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+
+.other-side-content > p {
+    margin-right: 5rem;
+    text-align: end;
+    font-size: 1.3rem;
+    width: 40rem;
+    line-height: 2rem;
+}
+
+.other-side-content > p > span {
+    color: rgb(230, 230, 230);
+    transition: color 0.5s ease;
+}
+
+.other-side-content > p:hover > span {
+    color: white;
+    transition: color 0.5s ease;
+}
+
+/* 
+=========================================
+                PROJECTS
+=========================================
+*/
+
+#projects {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100vh;
+    width: 100%;
+}
+
+.card-deck-container {
+    display: flex;
+    justify-content: center;
+}
+
+.card-deck-container > i {
+    margin: 1rem;
+    margin-top: auto;
+    font-size: 2rem;
+}
+
+.card-deck {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    visibility: hidden;
+    transform: translateY(100%);
+    margin: 0 0.5rem;
+    padding: 0.5rem;
+    width: 15rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    background-color: rgba(60, 60, 60, 0.5);
+    opacity: 0.7;
+    transition: opacity 0.5s ease, background-color 0.5s ease, transform 0.5s ease-out;
+}
+
+.card:hover {
+    cursor: pointer;
+    opacity: 0.85;
+    transform: translateY(0rem) !important;
+    transition: opacity 0.2s ease, transform 0.5s ease;
+}
+
+.card > h2 {
+    color: var(--text-secondary);
+    transition: color 0.5s ease;
+}
+
+.card:hover > h2 {
+    color: var(--text-primary);
+    transition: color 0.5s ease;
+}
+
+.card:active > h2 {
+    color: white;
+    transition: color 0.1s ease;
+}
+
+.card:active {
+    opacity: 1;
+    transform: translateY(0rem) !important;
+    transition: opacity 0.1s ease, transform 0.3s ease;
+}
+
+.card > h2 {
+    text-align: center;
+    margin: 0.2rem auto;
+}
+
+.project-details {
+    padding-top: 2.5rem;
+    display: flex;
+    flex: 1;
+    opacity: 0;
+}
+
+.project-details > .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 1rem;
+}
+
+.project-details > .header > * {
+    margin: 0.5rem 0;
+}
+
+.project-details > .header > img {
+    width: 25rem;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+.project-details > .header > h1 {
+    text-align: center;
+}
+
+.project-details > .header > .links {
+    display: flex;
+    justify-content: center;
+}
+
+.project-details > .header > .links > * {
+    margin: 0 0.5rem;
+    text-decoration: underline;
+}
+
+.project-details > .content {
+    padding: 2rem;
+}
+
+.project-details > .content > p {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+}
+
+.project-details > .content > p > span {
+    color: var(--text-primary);
+    transition: color 0.5s ease;
+}
+
+.project-details > .content > p:hover > span {
+    color: white;
+    transition: color 0.5s ease;
+}
+
+.project-details > .content > * {
+    margin: 1rem 0;
+}
+
+.project-details > .content > h2 {
+    text-align: center;
+}
+
+.project-details > .content > .technologies-lists {
+    display: flex;
+    justify-content: space-around;
 }
