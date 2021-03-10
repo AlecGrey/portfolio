@@ -9,6 +9,5 @@
     "start": "open http://127.0.0.1:8080 && http-server -c-1"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.2"
   }
 }
