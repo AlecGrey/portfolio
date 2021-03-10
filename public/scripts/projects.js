@@ -131,15 +131,16 @@ function addSelectedToCard(card) {
 function projectsLoad() {
     // LOADS IN ALL PAGE ELEMENTS
     const cards = document.querySelectorAll('.card-deck > .card')
-    const arrows = document.querySelectorAll('.card-deck-container > i')
     // create new timeline
     const t1 = new TimelineMax()
-    // reveal the arrows
-    t1.fromTo(arrows, 1, { opacity: 0 }, { opacity: 1 })
+    // hide cards below view
+    t1.set(cards, { yPercent: 125 })
+    // reveal cards
+    t1.set( cards, { visibility: 'visible' }, 0.3)
     // for each card in the deck, bounce them up
     let i = 0
     for (const card of cards) {
-        t1.fromTo(card, 2.5, { y: 20 }, { visibility: 'visible', y: 0, ease: Elastic.easeOut }, i * 0.2)
+        t1.to(card, 2.5, { yPercent: 60, ease: Elastic.easeOut }, (i * 0.1) + 0.3)
         i++
     }
     // return timeline
@@ -149,20 +150,20 @@ function projectsLoad() {
 function projectsHide() {
     // HIDES ALL PAGE ELEMENTS IN 1 SECOND
     const cards = document.querySelectorAll('.card-deck > .card')
-    const arrows = document.querySelectorAll('.card-deck-container > i')
     const content = document.querySelector('.project-details')
     // create new timeline
     const t1 = new TimelineMax({ onComplete: dismountPage })
     // fade out content
     t1.to(content, 1, { opacity: 0, ease: Power4.easeOut})
-    // hide arrows
-    t1.fromTo(arrows, 0.5, { opacity: 1 }, { opacity: 0 }, 0)
     // scroll them down and fade them out
     let i = 0
     for (const card of cards) {
-        t1.fromTo(card, 0.5, { y: 0 }, { y: 20 }, i * 0.1)
+        // translate down cards
+        t1.fromTo(card, 0.5, { yPercent: 60 }, { yPercent: 125 }, i * 0.1)
+        // hard code the matrix to HOPEFULLY fix the bug with changing matrix value
         i++
     }
+    t1.set(cards, { visibility: 'hidden' })
     // return timeline
     return t1
 }

@@ -650,7 +650,6 @@ p.footnote > em {
 
 .card {
     visibility: hidden;
-    transform: translateY(100%);
     margin: 0 0.5rem;
     padding: 0.5rem;
     width: 15rem;

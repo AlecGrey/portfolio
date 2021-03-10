@@ -32,11 +32,20 @@ export default function constructMainPageObject() {
     // ==============
 
     const navigateEvent = e => {
-        if (e.target.classList.contains('selected')) return
-        // ELSE
-        hideCurrentSection()
-        // wait for animation to end before animating in new section
-        setTimeout(() => revealSectionByClassName(e.target.className), 1000)
+        const nav = e.target
+        if (nav.classList.contains('selected')) return
+        // CHECK TO SEE IF SPECIAL RULES APPLY
+        if (nav.className === 'projects-link') {
+            // QUICKER TRANSITION B/C OF ANIMATION DELAY
+            hideCurrentSection()
+            setTimeout(() => revealSectionByClassName(nav.className), 700)
+
+        } else {
+            // STANDARD SWITCH
+            hideCurrentSection()
+            // wait for animation to end before animating in new section
+            setTimeout(() => revealSectionByClassName(e.target.className), 1000)
+        }
     }
 
     const hideCurrentSection = () => {

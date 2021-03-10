@@ -59,7 +59,7 @@ function contactHide() {
     // set new timeline
     const t1 = new TimelineMax({ onComplete: dismountPage })
     // fade out and slide up
-    t1.to(card, 0.5,{ opacity: 0, yPercent: -10, ease: Power3.easeOut })
+    t1.to(card, 1,{ opacity: 0, yPercent: -10, ease: Power3.easeOut })
     // return timeline
     return t1
 }
