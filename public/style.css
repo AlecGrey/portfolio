@@ -15,6 +15,11 @@
     background-size: cover;
 }
 
+::selection {
+    color: none;
+    background: none;
+}
+
 body {
     margin: 0;
 }
@@ -366,6 +371,7 @@ a:active {
 .education-content > div {
     padding: 1rem;
     background-color: var(--bg-ternary);
+    box-shadow: 0 0 1rem rgb(20, 20, 20);
     border-radius: 0.5rem;
     margin-bottom: 1rem;
     height: auto;
@@ -497,6 +503,7 @@ p.footnote > em {
     position: absolute;
     padding: 1rem;
     border-radius: 1rem;
+    box-shadow: 0 0 1.5rem rgb(20, 20, 20);
 }
 
 .skill-icons > i:hover {
@@ -652,6 +659,7 @@ p.footnote > em {
     flex-direction: column;
     border-radius: 0.5rem;
     background-color: rgba(60, 60, 60, 0.5);
+    box-shadow: 0 0 1rem rgb(12, 12, 12);
     opacity: 0.7;
     transition: opacity 0.5s ease, background-color 0.5s ease, transform 0.5s ease-out;
 }
@@ -711,6 +719,8 @@ p.footnote > em {
     width: 25rem;
     height: auto;
     border-radius: 0.5rem;
+    box-shadow: 0 0 2rem black;
+    opacity: 0.8;
 }
 
 .project-details > .header > h1 {
@@ -757,4 +767,106 @@ p.footnote > em {
 .project-details > .content > .technologies-lists {
     display: flex;
     justify-content: space-around;
+}
+
+/* 
+=========================================
+                CONTACT
+=========================================
+*/
+
+#contact {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contact-form {
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-ternary);
+    box-shadow: 0 0 1rem rgba(20, 20, 20, 0.7);
+    border-radius: 1rem;
+    align-self: center;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+}
+
+#contact-form > * {
+    flex: 1;
+    margin: 0 1rem;
+}
+
+#contact-form > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#contact-form > div > * {
+    margin: 0 auto;
+}
+
+#contact-form > div > h3 {
+    margin-top: 1rem;
+}
+
+#contact-form > div > img {
+    width: 20rem;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem black;
+}
+
+#contact-form > form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 20rem;
+}
+
+#contact-form > form > * {
+    margin: 0.5rem 0;
+}
+
+input[type=text], input[type=email], textarea {
+    border: 1px solid rgb(20, 20, 20);
+    border-radius: 0.2rem;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    background-color: rgb(80, 80, 80);
+    color: var(--text-secondary)
+}
+
+input[type=submit] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.2rem;
+    box-sizing: border-box;
+    background-color: rgb(200, 200, 200);
+    transition: background-color 0.5s ease;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+    background-color: rgb(215, 215, 215);
+    transition: background-color 0.3s ease;
+}
+
+input[type=submit]:active {
+    background-color: rgb(230, 230, 230);
+    transition: background-color 0.2s ease;
+}
+
+form > p.alert {
+    opacity: 0;
+    text-align: center;
+}
+
+p.alert.success {
+    color: #25d35c;
 }

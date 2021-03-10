@@ -1,6 +1,7 @@
 import welcomeConstructor from './welcome.js';
 import aboutConstructor from './about.js';
 import projectsConstructor from './projects.js';
+import contactConstructor from './contact.js';
 
 export default function constructMainPageObject() {
     // CONSTRUCTS PAGE WITH SUBPAGES AND EVENT LISTENERS
@@ -10,6 +11,7 @@ export default function constructMainPageObject() {
     const welcome = welcomeConstructor()
     const about = aboutConstructor()
     const projects = projectsConstructor()
+    const contact = contactConstructor()
     // ANIMATION HOLDER
     page.animations = {
         'welcomeLoad': null,
@@ -62,6 +64,8 @@ export default function constructMainPageObject() {
 
             case 'contact-link':
                 // insert functionality
+                page.animations.contactLoad.pause()
+                contact.animations.hide()
                 break
 
             default:
@@ -98,7 +102,10 @@ export default function constructMainPageObject() {
                 break
 
             case 'contact-link':
-                // insert functionality
+                // mount page and animate in
+                contact.construct()
+                page.animations.contactLoad = contact.animations.load()
+                contactEventListeners()
                 break
 
             default:
@@ -135,6 +142,10 @@ export default function constructMainPageObject() {
 
     const projectsEventListeners = () => {
         projects.addPageEvents()
+    }
+
+    const contactEventListeners = () => {
+        contact.addPageEvents()
     }
 
     return page

@@ -567,7 +567,7 @@ const mainHTML = `
     <div class='glance-content'>
         <h1>I believe well rounded <span>content</span> comes from well rounded <span>people</span>.</h1>
         <p>As a <span>developer</span>, I want my content to be professional, but fun.  Engaging to the user, yet not demanding of them.  I am constantly searching for better ways to solve problems, and to add new tools to my belt.</p>
-        <p>As a <span>human</span>, I am a dedicated worker, an early communicator, and an eager learner.  While working on a team, I always strive for humility; to find ways to maximize my own potential, and lift the potential of those around me.</p>
+        <p>As a <span>human</span>, I am a dedicated worker, an early communicator, and an eager learner.  While working on a team, I put humility first; I look for ways to maximize my own potential, and I work hard to help lift those around me.</p>
         <p>Wanna cut to the chase?  Download my resume <a id='resume-link' href='./assets/20210215-Alexander-Grey.pdf' target='_blank'>here</a>.</p>
     </div>
     <div class='education-content'>

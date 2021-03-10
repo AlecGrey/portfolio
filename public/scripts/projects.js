@@ -31,7 +31,7 @@ function addPageContent() {
     projectsDiv.innerHTML = mainHTML
     main.appendChild(projectsDiv)
     // add initial project cards to deck
-    addCardsByRange(0, 2)
+    addCardsByRange(0, 3)
 }
 
 function dismountPage() {
@@ -139,7 +139,7 @@ function projectsLoad() {
     // for each card in the deck, bounce them up
     let i = 0
     for (const card of cards) {
-        t1.fromTo(card, 2.5, { yPercent: 100 }, { visibility: 'visible', yPercent: 30, ease: Elastic.easeOut }, i * 0.2)
+        t1.fromTo(card, 2.5, { y: 20 }, { visibility: 'visible', y: 0, ease: Elastic.easeOut }, i * 0.2)
         i++
     }
     // return timeline
@@ -160,7 +160,7 @@ function projectsHide() {
     // scroll them down and fade them out
     let i = 0
     for (const card of cards) {
-        t1.fromTo(card, 0.5, { yPercent: 10 }, { yPercent: 100 }, i * 0.1)
+        t1.fromTo(card, 0.5, { y: 0 }, { y: 20 }, i * 0.1)
         i++
     }
     // return timeline
@@ -240,9 +240,9 @@ const mainHTML = `
     <div class='content'></div>
 </div>
 <div class='card-deck-container'>
-    <i class="fas fa-arrow-alt-circle-left"></i>
+    <!-- <i class="fas fa-arrow-alt-circle-left"></i> -->
     <div class='card-deck'></div>
-    <i class="fas fa-arrow-alt-circle-right"></i>
+    <!-- <i class="fas fa-arrow-alt-circle-right"></i> -->
 </div>
 `
 
@@ -337,6 +337,21 @@ const projects = [
         image: './assets/projects/listify.png',
         repo: 'https://github.com/AlecGrey/listify',
         demo: 'https://www.youtube.com/watch?v=dEenBGEsh8A',
-        description: ``
+        content: `
+        <p>
+            My first full-stack application!  Listify helps simplify your grocery-shopping experience, by allowing you to generate your list based off of the meals that you plan on cooking.  Simply add a meal from the catalog to your grocery list, and the ingredients and quantities will be added.  Any duplicates are automatically amalgamated in the list, giving you a simple list to follow.
+        </p>
+        <h2>Technologies</h2>
+        <div class='technologies-lists'>
+            <ul>
+                <li>Ruby on Rails</li>
+                <li>Bcrypt</li>
+            </ul>
+            <ul>
+                <li>Embedded Ruby Views</li>
+                <li>HTML & CSS</li>
+            </ul>
+        </div>
+        `
     }
 ]
