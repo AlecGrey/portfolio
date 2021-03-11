@@ -584,7 +584,7 @@ const mainHTML = `
                     <p>I learned how to build professional web applications, with considerations on security & authorization, user experience, rapid API queries, and time/memory optimization.</p>
                 </div>
                 <div class='details'>
-                    <div>
+                    <div class='languages'>
                         <h4>Languages</h4>
                         <ul>
                             <li>Ruby</li>
@@ -593,8 +593,8 @@ const mainHTML = `
                             <li>SQL</li>
                         </ul>
                     </div>
-                    <div>
-                        <h4>Technologies & Frameworks</h4>
+                    <div class='technologies'>
+                        <h4>Technologies</h4>
                         <ul>
                             <li>Rails</li>
                             <li>React</li>
@@ -605,7 +605,7 @@ const mainHTML = `
                             <li>Heroku & Firebase*</li>
                         </ul>
                     </div>
-                    <div>
+                    <div class='skills'>
                         <h4>Skills</h4>
                         <ul>
                             <li>OO Programming</li>
@@ -656,7 +656,9 @@ const mainHTML = `
 const backendSkillHTML = `
 <h1>Backend Development</h1>
 <div>
-    <i class="fas fa-gem"></i>
+    <div class='icon-container'>
+        <i class="fas fa-gem"></i>
+    </div>
     <div class='skill-inner-content'>
         <h2>Ruby on Rails</h2>
         <p>
@@ -665,7 +667,9 @@ const backendSkillHTML = `
     </div>
 </div>
 <div>
-    <i class="fab fa-python"></i>
+    <div class='icon-container'>
+        <i class="fab fa-python"></i>
+    </div>
     <div class='skill-inner-content'>
         <h2>Python & Flask</h2>
         <p>
@@ -674,7 +678,9 @@ const backendSkillHTML = `
     </div>
 </div>
 <div>
-    <i class="fas fa-user-lock"></i>
+    <div class='icon-container'>
+        <i class="fas fa-user-lock"></i>
+    </div>
     <div class='skill-inner-content'>
         <h2>Security, Authentication and Authorization</h2>
         <p>
@@ -687,21 +693,27 @@ const backendSkillHTML = `
 const frontendSkillHTML = `
 <h1>Frontend Development</h1>
 <div>
-    <i class="fab fa-react"></i>
+    <div class='icon-container'>
+        <i class="fab fa-react"></i>    
+    </div>
     <div class='skill-inner-content'>
         <h2>React & Redux</h2>
         <p>Build rapid, interactive web applications. Integrate multiple endpoints via <span>react-router</span>.  Incorporate complex state-management with <span>Redux</span> store.  Build functional components utilizing hooks for local state management and component timelines. Maintain sessions via cookies and localStorage.  Create real-time user experiences with <span>websockets</span>.</p>
     </div>
 </div>
 <div>
-    <i class="fab fa-bootstrap"></i>
+    <div class='icon-container'>
+        <i class="fab fa-bootstrap"></i>
+    </div>
     <div class='skill-inner-content'>
         <h2>Bootstrap</h2>
         <p>Build modern, flexible user-interfaces.  Incorporate <span>Bootstrap 4</span> class designations for flexbox and grid layouts, as well as text and HTML element styling.  Integrate <span>React-Bootstrap</span> components in client-side applications.</p>
     </div>
 </div>
 <div>
-    <i class="fas fa-desktop"></i>
+    <div class='icon-container'>
+        <i class="fas fa-desktop"></i>
+    </div>
     <div class='skill-inner-content'>
         <h2>Static Content</h2>
         <p>Create highly functional static webpages using <span>HTML</span> and <span>CSS</span>.  <span>Embedded Ruby (.erb)</span> view files in Ruby on Rails, and <span>Jinja2</span> for Python/Flask applications.</p>
@@ -712,21 +724,27 @@ const frontendSkillHTML = `
 const generalCodingSkillHTML = `
 <h1>General Development</h1>
 <div>
-    <i class="fas fa-cube"></i>
+    <div class='icon-container'>
+        <i class="fas fa-cube"></i>
+    </div>
     <div class='skill-inner-content'>
         <h2>Object Oriented Programming</h2>
         <p>Build applications using <span>DRY</span> code using object-oriented design.  Implemented fundamentals in multiple <span>Ruby</span> and <span>Javascript</span> applications.</p>
     </div>
 </div>
 <div>
-    <i class="fas fa-code-branch"></i>
+    <div class='icon-container'>
+        <i class="fas fa-code-branch"></i>
+    </div>
     <div class='skill-inner-content'>
         <h2>Version Control</h2>
         <p>Safely manage code updates and features using .git version control via <span>GitHub</span>.  Collaborate with multiple team members on larger projects, coordinating feature changes and merging conflicting changes.  Access my github <a href='https://github.com/AlecGrey'>here.</a></p>
     </div>
 </div>
 <div>
-    <i class="fas fa-file-code"></i>
+    <div class='icon-container'>
+        <i class="fas fa-file-code"></i>
+    </div>
     <div class='skill-inner-content'>
         <h2>API Queries & Web Scraping</h2>
         <p>Incorporate data from 3rd-party APIs into applications.  In the absence of a serviceable API, successfully implemented <span>chromedriver</span> and <span>watir</span> to develop web scraping script to attain pertinent site data.</p>
@@ -737,21 +755,27 @@ const generalCodingSkillHTML = `
 const nonCodingSkillHTML = `
 <h1>Non Technical</h1>
 <div>
-    <i class="fas fa-users"></i>
+    <div class='icon-container'>
+        <i class="fas fa-users"></i>
+    </div>
     <div class='skill-inner-content'>
         <h2>Teamwork</h2>
         <p>Collaborated on multiple team projects.  Maintain open lines of communication, coordinate workflow with team members, and manage code repositories to complete projects efficently.</p>
     </div>
 </div>
 <div>
-    <i class="fas fa-handshake"></i>
+    <div class='icon-container'>
+        <i class="fas fa-handshake"></i>
+    </div>
     <div class='skill-inner-content'>
         <h2>Communications</h2>
         <p>Extensive experience with company-client communications, and being the face of an organization.  Maintain professional and warm communications with clients, prioritizing their needs and handling conflict amicably.</p>
     </div>
 </div>
 <div>
-    <i class="fas fa-lightbulb"></i>
+    <div class='icon-container'>
+        <i class="fas fa-lightbulb"></i>
+    </div>
     <div class='skill-inner-content'>
         <h2>Problem Solving</h2>
         <p>I am an adept and tenacious <span>problem solver</span>.  Can quickly pick up new technologies and find best uses in applications.  I have a strong <span>work ethic</span>, and am willing to put in the extra effort to deliver on big projects.</p>

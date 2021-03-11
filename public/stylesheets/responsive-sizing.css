@@ -1,0 +1,293 @@
+@media (min-width: 1025px) {
+
+/* HTML LEVEL */
+
+    html, body {
+        overflow: hidden;
+    }
+
+/* NAVBAR */
+
+    .navbar > ul {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
+
+/* MAIN */
+
+/* WELCOME */
+
+    #welcome {
+        padding-left: 8rem;
+        padding-right: 8rem;
+    }
+
+    #welcome-bg-img {
+        width: 55%;
+    }
+
+/* ABOUT */
+
+    .scroll-container {
+        padding-left: 1rem;
+    }
+
+    .scroll-box > p {
+        padding: 0 1rem;
+    }
+
+     /* GLANCE */
+
+    /* EDUCATION */
+
+    /* SKILLS */
+
+    .skill-inner-content > p {
+        font-size: 1.1rem;
+    }
+
+    .skill-icons {
+        margin-left: 15%;
+        margin-right: 20%;
+    }
+
+    .skill-details {
+        padding-left: 2rem;
+        padding-right: 5rem;
+    }
+
+    /* OTHER SIDE */
+
+    #other-side-img {
+        width: 70vw;
+    }
+
+    .other-side-content > p {
+        margin-right: 5rem;
+        width: 40rem;
+    }
+
+/* PROJECTS */
+
+    #projects {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .card {
+        width: 12rem;
+    }
+
+    .project-details > .content {
+        padding: 2rem 2rem 0 2rem;
+    }
+
+    .project-details > .content > p {
+        font-size: 1.1rem;
+    }
+
+    .project-details > .content > * {
+        margin: 0.5rem auto;
+    }
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+/* HTML LEVEL */
+
+    html, body {
+        overflow: hidden;
+    }
+
+/* MAIN */
+
+/* WELCOME */
+
+    #welcome {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    #welcome-bg-img {
+        width: 75%;
+    }
+
+/* ABOUT */
+
+    .scroll-container {
+        padding-left: 0;
+    }
+
+    .scroll-box > p {
+        padding: 0 0.5rem;
+    }
+
+    /* GLANCE */
+
+    /* EDUCATION */
+
+    /* SKILLS */
+
+    .skill-icons {
+        margin-left: 10%;
+        margin-right: 15%;
+    }
+
+    .skill-details {
+        padding-left: 0;
+        padding-right: 1rem;
+    }
+
+    .skill-details > h1 {
+        margin-bottom: 0.5rem;
+    }
+
+    .skill-details > div {
+        grid-template-columns: 5rem auto;
+    }
+
+    .skill-inner-content > * {
+        margin: 0.5rem auto;
+    }
+
+    .icon-container > i {
+        font-size: 3rem;
+    }
+
+    /* OTHER SIDE */
+
+    #other-side-img {
+        width: 80vw;
+    }
+
+    .other-side-content > p {
+        margin-right: 2rem;
+        width: 30rem;
+    }
+
+/* PROJECTS */
+
+    .project-details {
+        flex-direction: column;
+    }
+
+    .project-details > .header {
+        padding-top: 1rem;
+    }
+
+    .project-details > .header > img {
+        display: none;
+    }
+
+    .project-details > .content {
+        padding: 0 2rem;
+    }
+
+    .project-details > .content > p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .project-details > .content > * {
+        margin: 0.5rem auto;
+    }
+
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    /* HTML LEVEL */
+
+    /* MAIN */
+    
+    /* WELCOME */
+    
+    #welcome {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    #welcome-bg-img {
+        width: 85%;
+    }
+
+    /* ABOUT */
+
+    #about {
+        flex-direction: column;
+    }
+
+    #about > .content {
+        margin-top: 0;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    /* SCROLL BAR */
+
+    .scroll-container {
+        display: block;
+        margin-top: 2.5rem;
+    }
+
+    .scroll-box {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .scroll-box > p {
+        margin: 1rem 0;
+    }
+
+    .scroll-bar, .scroll-bar.inner {
+        display: none;
+    }
+
+    /* GLANCE */
+    
+    .content > .glance-content {
+        padding: 0 3rem;
+        padding-top: 1rem;
+    }
+
+    .glance-content > h1 {
+        font-size: 1.5rem;
+    }
+
+    .glance-content > p {
+        font-size: 1.1rem;
+    }
+
+    /* EDUCATION */
+
+    .education-inner-content > .details {
+        flex-direction: column;
+    }
+
+    .education-inner-content > .details > div > h4 {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .education-inner-content > .details > div > ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .education-inner-content > .details > .skills > ul > li {
+        width: 10rem;
+    }
+
+    .details > div > ul > li {
+        width: auto;
+        padding: 0 0.5rem;
+        margin: 0 auto;
+    }
+
+    p.footnote {
+        margin-right: 0;
+    }
+
+
+}

@@ -174,7 +174,7 @@ function hideProjectContent() {
     // set new timeline
     const t1 = new TimelineMax()
     // fade out and drop content
-    t1.to(content, 0.4, { opacity: 0, yPercent: 10 })
+    t1.to(content, 0.6, { opacity: 0, yPercent: 10, ease: Power1.easeOut })
     // return timeline
     return t1
 }
@@ -185,7 +185,7 @@ function revealProjectContent() {
     // set new timeline
     const t1 = new TimelineMax()
     // fade in and raise content
-    t1.fromTo(content, 0.5, { opacity: 0, yPercent: 10 }, { opacity: 1, yPercent: 0 })
+    t1.fromTo(content, 0.7, { opacity: 0, yPercent: 10 }, { opacity: 1, yPercent: 0, ease: Power1.easeOut })
     // return timeline
     return t1
 }
@@ -221,9 +221,9 @@ function cardSelectEvent(card) {
         // animate out content
         hideProjectContent()
         // once old content fades out, replace content
-        setTimeout(() => setProjectContent(parseInt(card.dataset.index)), 400)
+        setTimeout(() => setProjectContent(parseInt(card.dataset.index)), 600)
         // fade in new content
-        setTimeout(() => revealProjectContent(), 500)
+        setTimeout(() => revealProjectContent(), 700)
     }
 }
 
@@ -290,10 +290,9 @@ const projects = [
         url: 'https://apartment-findr.herokuapp.com/',
         content: `
         <p>
-            Apartment Findr is an application built to simplify the apartment-seeking process by creating a single-page user interface to browse apartments within similar price-ranges and neighborhoods.  The 3x3 grid format allows users to compare apartments similar price-points, and across multiple neighborhoods within these price points.  Each intersection of price and neighborhood contains all the listings that fit those parameters, so you can browse many listings in real time!  Don't like an apartment?  You can simply use the like/dislike system to remove unwanted listings!
+            Apartment Findr is an application built to simplify the apartment-seeking process by creating a single-page user interface to browse apartments within similar price-ranges and neighborhoods.  The 3x3 grid format allows users to compare apartments similar price-points, and across multiple neighborhoods within these price points.  Each intersection of price and neighborhood contains all the listings that fit those parameters, so you can browse many listings in real time!
         </p>
         <p>All data was 'scraped' from Craigslist-SF, as Craigslist offers no API to fetch information.</p>
-        <p>The entire application was deployed on a single <span>heroku</span> build.  Give it a few seconds to load!</p>
         <h2>Technologies</h2>
         <div class='technologies-lists'>
             <ul>
