@@ -221,7 +221,7 @@ a:active {
     right: 0;
     top: 0;
     height: 100%;
-    width: 55%;
+    width: 55vw;
     z-index: -2;
     background-image: 
         linear-gradient(90deg, rgba(25,25,25,1) 0%, rgba(25,25,25,0.9) 40%, rgba(25,25,25,0.3) 100%),

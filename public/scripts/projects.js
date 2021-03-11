@@ -148,6 +148,9 @@ function projectsLoad() {
 }
 
 function projectsHide() {
+    // REMOVE SELECTED FROM CARD
+    const selected = document.querySelector('.card.selected')
+    if (selected !== null) selected.classList.remove('selected')
     // HIDES ALL PAGE ELEMENTS IN 1 SECOND
     const cards = document.querySelectorAll('.card-deck > .card')
     const content = document.querySelector('.project-details')

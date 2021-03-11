@@ -23,7 +23,7 @@
     }
 
     #welcome-bg-img {
-        width: 55%;
+        width: 55vw;
     }
 
 /* ABOUT */
@@ -110,7 +110,7 @@
     }
 
     #welcome-bg-img {
-        width: 75%;
+        width: 75vw;
     }
 
 /* ABOUT */
@@ -289,5 +289,114 @@
         margin-right: 0;
     }
 
+    /* SKILLS */
+
+    .skill-icons {
+        margin-left: 10%;
+        margin-right: 15%;
+    }
+
+    .skill-icons > i {
+        font-size: 4rem;
+    }
+
+    .skill-details > h1 {
+        margin-bottom: 0;
+        margin-top: 0.5rem;
+        font-size: 1.5rem;
+    }
+
+    .skill-inner-content > h2 {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .skill-inner-content > p {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .skill-details > div {
+        padding: 0 1rem;
+        grid-template-columns: 4rem auto;
+    }
+
+    .icon-container > i {
+        font-size: 2.5rem;
+    }
+
+    /* OTHER SIDE */
+
+    #other-side-img {
+        width: 95vw;
+    }
+
+    .other-side-content {
+        padding-top: 0;
+    }
+
+    .other-side-content > p {
+        margin-right: 1rem;
+        width: 25rem;
+    }
+
+/* PROJECTS */
+
+    #projects {
+        overflow: hidden;
+    }
+
+    .card-deck {
+        overflow-x: scroll;
+        justify-content: flex-start;
+    }
+
+    .card.selected {
+        transform: translateY(0%) !important;
+    }
+
+    .project-details {
+        flex-direction: column;
+    }
+
+    .project-details > .header {
+        padding-top: 1rem;
+    }
+
+    .project-details > .header > img, .project-details > .header > h1 {
+        display: none;
+    }
+
+    .project-details > .content {
+        padding: 0 2rem;
+    }
+
+    .project-details > .content > p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .project-details > .content > * {
+        margin: 0.5rem auto;
+    }
+
+    .project-details > .content > h2 {
+        font-size: 1.3rem;
+    }
+
+    .technologies-lists > ul > li {
+        font-size: 0.9rem;
+    }
+
+    /* CONTACt */
+
+    #contact-form {
+        flex-direction: column;
+    }
+
+    #contact-form > div > img {
+        width: 12rem;
+    }
 
 }
