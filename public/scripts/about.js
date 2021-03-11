@@ -648,7 +648,7 @@ const mainHTML = `
     </div>
     <div class='other-side-content'>
         <div id='other-side-img'></div>
-        <p>I'm <span>28 years young</span>, and a home-grown member of the <span>Pacific Northwest</span>.  Any good weekend you can catch my wife and I out <span>exploring the parks</span>, or up in Bellingham visiting our old Alma Mater.  I'm a competitive <span>Ultimate Frisbee</span> player, a decent <span>cook</span>, and a tough (but fair) <span>dungeon master</span>.</p>
+        <p>I'm <span>28 years young</span> and a home-grown member of the <span>Pacific Northwest</span>.  Any good weekend you can catch me and my wife out <span>exploring the parks</span> or up in Bellingham visiting our Alma Mater.  I'm a competitive <span>Ultimate Frisbee</span> player, a decent <span>cook</span>, and a tough (but fair) <span>dungeon master</span>.</p>
         <p>Same with work as I am in my life: I love to try new things, and I like to get really good at them too.</p>
     </div>
 `

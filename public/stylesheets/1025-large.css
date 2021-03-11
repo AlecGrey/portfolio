@@ -1,0 +1,8 @@
+@media (min-width: 1025px) {
+
+    .navbar > ul {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
+
+}

@@ -134,13 +134,13 @@ function projectsLoad() {
     // create new timeline
     const t1 = new TimelineMax()
     // hide cards below view
-    t1.set(cards, { yPercent: 125 })
+    t1.set(cards, { yPercent: 140 })
     // reveal cards
     t1.set( cards, { visibility: 'visible' }, 0.3)
     // for each card in the deck, bounce them up
     let i = 0
     for (const card of cards) {
-        t1.to(card, 2.5, { yPercent: 60, ease: Elastic.easeOut }, (i * 0.1) + 0.3)
+        t1.to(card, 3, { yPercent: 40, ease: Elastic.easeOut }, (i * 0.1) + 0.3)
         i++
     }
     // return timeline
@@ -159,7 +159,7 @@ function projectsHide() {
     let i = 0
     for (const card of cards) {
         // translate down cards
-        t1.fromTo(card, 0.5, { yPercent: 60 }, { yPercent: 125 }, i * 0.1)
+        t1.fromTo(card, 0.5, { yPercent: 40 }, { yPercent: 140 }, i * 0.1)
         // hard code the matrix to HOPEFULLY fix the bug with changing matrix value
         i++
     }
@@ -276,6 +276,7 @@ const projects = [
                 <li>Ruby on Rails</li>
                 <li>PostgreSQL</li>
                 <li>JSON-API Serializer</li>
+                <li>BCrypt</li>
                 <li>Rack-Cors</li>
                 <li>Websockets via ActionCable</li>
                 <li>Redis</li>
