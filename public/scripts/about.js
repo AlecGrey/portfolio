@@ -266,8 +266,45 @@ function skillsSectionOut() {
     return t1
 }
 
-function orbitElementAfterDelay(el, time, index) {
+// function orbitElementAfterDelay(el, time) {
+//     // set quarter-time for each animation
+//     const qTime = time / 4
+//     // set color ranges
+//     const color = [
+//         'rgb(200, 200, 200)',
+//         'rgb(220, 220, 220)',
+//         'rgb(240, 240, 240)'
+//     ]
+//     const bgColor = [
+//         'rgb(30, 30, 30)',
+//         'rgb(40, 40, 40)',
+//         'rgb(50, 50, 50)'
+//     ]
+
+//     const t1 = new TimelineMax({ paused: true, repeat: -1 })
+//     // set starting position
+//     t1.set(el, { right: '100%', xPercent: 100 , bottom: '50%', yPercent: 50, z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1] })
+//     // set first quarter rotation
+//     t1.to(el, qTime, { right: '50%', xPercent: 50, ease: Power1.easeIn }, 0)
+//     t1.to(el, qTime, { bottom: '100%', yPercent: 100, z: 0, zIndex: 4, color: color[0], backgroundColor: bgColor[0], ease: Power1.easeOut }, 0)
+//     // set second quarter rotation
+//     t1.to(el, qTime, { right: '0%', xPercent: 0, ease: Power1.easeOut }, qTime)
+//     t1.to(el, qTime, { bottom: '50%', yPercent: 50, z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1],  ease: Power1.easeIn }, qTime)
+//     // set third quarter rotation
+//     t1.to(el, qTime, { right: '50%', xPercent: 50, ease: Power1.easeIn }, qTime * 2)
+//     t1.to(el, qTime, { bottom: '0%', yPercent: 0,  z: 100, zIndex: 6, color: color[2], backgroundColor: bgColor[2], ease: Power1.easeOut }, qTime * 2)
+//     // set fourth quarter rotation
+//     t1.to(el, qTime, { right: '100%', xPercent: 100,  ease: Power1.easeOut }, qTime * 3)
+//     t1.to(el, qTime, { bottom: '50%', yPercent: 50,  z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1], ease: Power1.easeIn }, qTime * 3)
+//     // start position based off index of element
+//     t1.play()
+
+//     return t1
+// }
+
+function newOrbitElement(el, time, i) {
     const qTime = time / 4
+    // set color ranges
     const color = [
         'rgb(200, 200, 200)',
         'rgb(220, 220, 220)',
@@ -278,27 +315,39 @@ function orbitElementAfterDelay(el, time, index) {
         'rgb(40, 40, 40)',
         'rgb(50, 50, 50)'
     ]
-
+    // SET TIMELINE WITH PARAMS
     const t1 = new TimelineMax({ paused: true, repeat: -1 })
-    // set starting position
-    t1.set(el, { right: '100%', xPercent: 100 , bottom: '50%', yPercent: 50, z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1] })
-    // set first quarter rotation
-    t1.to(el, qTime, { right: '50%', xPercent: 50, ease: Power1.easeIn }, 0)
+    // first quarter animation
+    t1.fromTo(el, qTime,
+        { right: '100%', xPercent: 100 , bottom: '50%', yPercent: 50, z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1] }, // FROM
+        { right: '50%', xPercent: 50, ease: Power1.easeIn }, // TO
+        0
+    )
     t1.to(el, qTime, { bottom: '100%', yPercent: 100, z: 0, zIndex: 4, color: color[0], backgroundColor: bgColor[0], ease: Power1.easeOut }, 0)
-    // set second quarter rotation
-    t1.to(el, qTime, { right: '0%', xPercent: 0, ease: Power1.easeOut }, qTime)
+    // second quarter animation
+    t1.fromTo(el, qTime,
+        { right: '50%', xPercent: 50, bottom: '100%', yPercent: 100, z: 0, zIndex: 4, color: color[0], backgroundColor: bgColor[0] }, // FROM
+        { right: '0%', xPercent: 0, ease: Power1.easeOut }, // TO
+        qTime
+    )
     t1.to(el, qTime, { bottom: '50%', yPercent: 50, z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1],  ease: Power1.easeIn }, qTime)
-    // set third quarter rotation
-    t1.to(el, qTime, { right: '50%', xPercent: 50, ease: Power1.easeIn }, qTime * 2)
+    // third quarter animation
+    t1.fromTo(el, qTime,
+        { right: '0%', xPercent: 0, bottom: '50%', yPercent: 50, z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1] }, // FROM
+        { right: '50%', xPercent: 50, ease: Power1.easeIn }, // TO
+        qTime * 2
+    )
     t1.to(el, qTime, { bottom: '0%', yPercent: 0,  z: 100, zIndex: 6, color: color[2], backgroundColor: bgColor[2], ease: Power1.easeOut }, qTime * 2)
-    // set fourth quarter rotation
-    t1.to(el, qTime, { right: '100%', xPercent: 100,  ease: Power1.easeOut }, qTime * 3)
+    // fourth quarter animation
+    t1.fromTo(el, qTime,
+        { right: '50%', xPercent: 50, bottom: '0%', yPercent: 0,  z: 100, zIndex: 6, color: color[2], backgroundColor: bgColor[2] }, // FROM
+        { right: '100%', xPercent: 100 }, // TO
+        qTime * 3
+    )
     t1.to(el, qTime, { bottom: '50%', yPercent: 50,  z: 50, zIndex: 5, color: color[1], backgroundColor: bgColor[1], ease: Power1.easeIn }, qTime * 3)
-
-    console.log(index * qTime)
-    // start position based off index of element
-    t1.play(index * qTime)
-
+    // PLAY TIMELINE FROM DELAY POINT
+    t1.play( i * qTime )
+    // return timeline
     return t1
 }
 
@@ -308,11 +357,10 @@ function orbitAllSkillIcons() {
     // set total animation duration
     const duration = 25
     // track index to pass into animation fx
-    console.log(icons)
     let i = 0
     for (const el of icons) {
-        // set animation to start with given duration, max element size, and time delay
-        orbitElementAfterDelay(el, duration, i)
+        // set animation to start with element, given duration, and time delay
+        newOrbitElement(el, duration, i)
         // increment time delay
         i++
     }
@@ -528,7 +576,6 @@ function addSkillDetailEvents() {
 
 function changeToSkillSection(e, section) {
     // short circuit if currently selected!
-    console.log(e.target.className)
     if (e.target.classList.contains('selected')) return
     // decide whether to immediately animate in, or wait until previous is animated out:
     if (document.querySelector('.skill-icons > i.selected') === null) {
