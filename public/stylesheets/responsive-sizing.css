@@ -348,6 +348,7 @@
     }
 
     .card-deck {
+        overflow-y: hidden;
         overflow-x: scroll;
         justify-content: flex-start;
     }
@@ -400,3 +401,58 @@
     }
 
 }
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+
+    .navbar {
+      width: 768px;
+    }
+
+    #welcome-bg-img {
+        width: 653px;
+    }
+
+    #about {
+        width: 768px;
+        height: 1024px;
+    }
+
+    #other-side-img {
+        width: 615px;
+        height: 1024px
+    }
+
+    #projects {
+        height: 1024px;
+    }
+
+  }
+  
+  /** 
+   * iPad with landscape orientation.
+   */
+  @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+    
+    .navbar {
+      width: 1024px;
+    }
+
+    #welcome-bg-img {
+        width: 870px;
+    }
+
+    #about {
+        width: 1024px;
+        height: 768px;
+    }
+
+    #other-side-img {
+        width: 819px;
+        height: 768px
+    }
+
+    #projects {
+        height: 768px;
+    }
+
+  }

@@ -495,9 +495,10 @@ p.footnote > em {
 
 .skill-icons {
     position: relative;
-    perspective: 100rem;
     height: 10rem;
     margin-bottom: 1rem;
+    perspective: 100rem;
+    -webkit-perspective: 100rem;
 }
 
 .skill-icons > i {
